@@ -1,0 +1,21 @@
+{
+  "name": "the Organic Mechanic",
+  "short_name": "O.M.",
+  "description": "Original art, pressed flower jewelry, and wearable psychedelia by William Bowers.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
+  "icons": [
+    {
+      "src": "/assets/images/brand/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/images/brand/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
