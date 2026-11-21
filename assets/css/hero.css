@@ -371,3 +371,136 @@
   padding: 0 !important;
   animation: none !important;
 }
+
+/* ========== Legibility & pairing composition (Nov 20 contrast pass) ========== */
+
+.hero[data-hero-slideshow] .hero-copy,
+.hero[data-hero-slideshow] .hero-copy h1,
+.hero[data-hero-slideshow] .hero-copy h1 em,
+.hero[data-hero-slideshow] .hero-lead,
+.hero[data-hero-slideshow] .hero-copy .eyebrow,
+.hero[data-hero-slideshow] .hero-caption,
+.hero[data-hero-slideshow] .hero-caption .eyebrow,
+.hero[data-hero-slideshow] .hero-caption .hero-art-title,
+.hero[data-hero-slideshow] .hero-caption a {
+  text-shadow:
+    0 1px 1px rgba(10, 10, 10, 0.95),
+    0 2px 8px rgba(10, 10, 10, 0.75),
+    0 10px 32px rgba(10, 10, 10, 0.55);
+}
+
+.hero[data-hero-slideshow] .hero-actions .btn-ghost {
+  background: rgba(10, 10, 10, 0.5);
+  border-color: rgba(246, 241, 230, 0.55);
+  backdrop-filter: blur(8px);
+}
+
+/* Strong left scrim + bottom vignette over full-bleed paintings. */
+.hero[data-hero-slideshow] .hero-media::after {
+  background:
+    linear-gradient(
+      to right,
+      rgba(10, 10, 10, 0.88) 0%,
+      rgba(10, 10, 10, 0.78) 22%,
+      rgba(10, 10, 10, 0.42) 42%,
+      rgba(10, 10, 10, 0.12) 58%,
+      transparent 68%
+    ),
+    linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.96) 0%,
+      rgba(10, 10, 10, 0.72) 18%,
+      rgba(10, 10, 10, 0.32) 36%,
+      rgba(10, 10, 10, 0.12) 52%,
+      rgba(10, 10, 10, 0.28) 100%
+    );
+}
+
+/* Desktop pairing: dark text rail | painting | jacket — no type sitting on the art. */
+@media (min-width: 861px) {
+  .hero[data-hero-slideshow] .hero-slide--pair .hero-pair {
+    grid-template-columns:
+      calc(max(1.25rem, (100% - var(--max, 76rem)) / 2) + 26.5rem + 1.75rem)
+      1.2fr
+      0.95fr;
+  }
+
+  .hero[data-hero-slideshow] .hero-slide--pair .hero-pair::before {
+    content: "";
+    background: #0a0a0a;
+    box-shadow: inset -1px 0 0 rgba(196, 164, 106, 0.22);
+    z-index: 0;
+  }
+
+  .hero[data-hero-slideshow]:has(.hero-slide--pair.is-active) .hero-copy {
+    max-width: 26.5rem;
+  }
+
+  /* When a pairing is showing, keep the left rail solid and only a light bottom vignette over the art. */
+  .hero[data-hero-slideshow]:has(.hero-slide--pair.is-active) .hero-media::after {
+    background:
+      linear-gradient(
+        to right,
+        #0a0a0a 0%,
+        #0a0a0a calc(max(1.25rem, (100% - var(--max, 76rem)) / 2) + 26.5rem + 1.75rem),
+        transparent calc(max(1.25rem, (100% - var(--max, 76rem)) / 2) + 26.5rem + 1.85rem)
+      ),
+      linear-gradient(to top, rgba(10, 10, 10, 0.55) 0%, transparent 26%);
+  }
+}
+
+@media (max-width: 860px) {
+  .hero[data-hero-slideshow] .hero-slide--pair .hero-pair::before {
+    content: none;
+    display: none;
+  }
+
+  /* On small screens the type sits at the bottom — lean harder on the vignette. */
+  .hero[data-hero-slideshow] .hero-media::after {
+    background:
+      linear-gradient(
+        to top,
+        rgba(10, 10, 10, 0.97) 0%,
+        rgba(10, 10, 10, 0.88) 16%,
+        rgba(10, 10, 10, 0.55) 32%,
+        rgba(10, 10, 10, 0.22) 50%,
+        rgba(10, 10, 10, 0.18) 100%
+      ),
+      linear-gradient(
+        to right,
+        rgba(10, 10, 10, 0.72) 0%,
+        rgba(10, 10, 10, 0.35) 38%,
+        transparent 62%
+      );
+  }
+}
+
+
+
+/* Mobile pairing: the site headline would sit on the mockup, so hide it
+   and let the jacket (or revealed painting) fill the frame above the caption. */
+@media (max-width: 860px) {
+  .hero[data-hero-slideshow]:has(.hero-slide--pair.is-active) .hero-copy {
+    display: none;
+  }
+  .hero[data-hero-slideshow] .hero-slide--pair .hero-pair-product {
+    inset: 0 0 22% 0 !important;
+    display: grid !important;
+    place-items: center !important;
+    padding: 5.6rem 1.15rem 0.6rem !important;
+    background: transparent !important;
+  }
+  .hero[data-hero-slideshow] .hero-slide--pair .hero-pair-product img,
+  .hero[data-hero-slideshow] .hero-slide--pair .hero-pair-product picture,
+  .hero[data-hero-slideshow] .hero-slide--pair .hero-pair-product picture img {
+    position: static !important;
+    width: auto !important;
+    height: auto !important;
+    max-width: 88% !important;
+    max-height: 100% !important;
+    padding: 0 !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    filter: drop-shadow(0 12px 28px rgba(0,0,0,0.45)) !important;
+  }
+}

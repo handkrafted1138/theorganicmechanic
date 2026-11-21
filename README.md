@@ -14,10 +14,18 @@ This is a plain HTML/CSS/JS site generated for **GitHub Pages**. Checkout stays 
 
 Do not put full-resolution scrape files in this repo; product images are resized (max 2000px) as AVIF, WebP, and JPEG. Homepage hero stills are resized to 800/1600/2400px.
 
-Rebuild from the parent project with:
+Rebuild from the parent project with the project venv (this is also the command the daily Big Cartel sync should run):
 
 ```bash
-python3 ../build/build.py --hero-only
+/workspace/organic-mechanic/.venv/bin/python /workspace/organic-mechanic/build/build.py
 ```
 
-The homepage hero slideshow (original paintings and canvas-to-wearable pairings) is defined in `../build/hero_config.py`. Always re-run the command above after a catalog rebuild so the daily Big Cartel sync cannot replace the hero with the older three-slide set.
+That fetches Big Cartel, rebuilds any new or changed product pages and shop listings, then re-applies the homepage hero last so the catalog rebuild cannot wipe it.
+
+Hero-only:
+
+```bash
+/workspace/organic-mechanic/.venv/bin/python /workspace/organic-mechanic/build/build.py --hero-only
+```
+
+The slideshow is defined in `../build/hero_config.py`.
