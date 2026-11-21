@@ -127,6 +127,20 @@
     pairTimer = setTimeout(() => slide.classList.add("is-pair-reveal"), PAIR_REVEAL_MS);
   };
 
+  const measureArt = (slide) => {
+    if (!slide || wideQuery.matches) return;
+    const img = slide.querySelector(".hero-art-frame img") || slide.querySelector(".hero-pair-art picture img");
+    const apply = () => {
+      if (!img) return;
+      const h = img.getBoundingClientRect().height;
+      if (h > 0) hero.style.setProperty("--active-art-h", `${Math.round(h)}px`);
+    };
+    if (!img) return;
+    if (img.complete) apply();
+    else img.addEventListener("load", apply, { once: true });
+    if (typeof img.decode === "function") img.decode().then(apply).catch(() => {});
+  };
+
   const show = (n) => {
     const list = slides();
     if (!list.length) return;
@@ -137,6 +151,7 @@
     // Preload the upcoming slide so the next fade is instant.
     preload(list[(i + 1) % list.length]);
     schedulePairReveal(list[i]);
+    measureArt(list[i]);
   };
 
   const stop = () => {
@@ -167,13 +182,15 @@
 
   show(0);
   start();
+  wideQuery.addEventListener?.("change", () => measureArt(slides()[i]));
+  window.addEventListener("resize", () => measureArt(slides()[i]), { passive: true });
 
   if (!reduce) {
     const onScroll = () => {
       const rect = hero.getBoundingClientRect();
       const p = Math.min(1, Math.max(0, -rect.top / Math.max(rect.height, 1)));
-      hero.querySelectorAll(".hero-slide:not(.hero-slide--pair) img, .hero-pair-art img").forEach((img) => {
-        img.style.transform = `scale(1.04) translateY(${p * 6}%)`;
+      hero.querySelectorAll(".hero-art-bg img").forEach((img) => {
+        img.style.transform = `scale(1.12) translateY(${p * 4}%)`;
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });

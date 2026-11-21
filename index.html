@@ -26,11 +26,11 @@
   <link rel="preload" href="/assets/fonts/cormorant-garamond-500-italic-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/assets/fonts/outfit-400-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
   <!-- HERO-PRELOAD-START -->
-  <link rel="preload" as="image" href="/assets/images/hero/lion-and-the-hare--1600.jpg" imagesrcset="/assets/images/hero/lion-and-the-hare--800.webp 800w, /assets/images/hero/lion-and-the-hare--1600.webp 1600w, /assets/images/hero/lion-and-the-hare--2400.webp 2400w" imagesizes="100vw" type="image/webp" fetchpriority="high">
+  <link rel="preload" as="image" href="/assets/images/hero/lion-and-the-hare--1600.jpg" imagesrcset="/assets/images/hero/lion-and-the-hare--800.webp 800w, /assets/images/hero/lion-and-the-hare--1600.webp 1600w, /assets/images/hero/lion-and-the-hare--2400.webp 2400w" imagesizes="(min-width: 861px) 55vw, 92vw" type="image/webp" fetchpriority="high">
   <!-- HERO-PRELOAD-END -->
   <link rel="stylesheet" href="/assets/css/fonts.css">
   <link rel="stylesheet" href="/assets/css/style.css">
-  <link rel="stylesheet" href="/assets/css/hero.css">
+  <link rel="stylesheet" href="/assets/css/hero.css?v=20261121c">
   
   <script type="application/ld+json">[{"@context":"https://schema.org","@type":["Organization","ArtGallery"],"name":"the Organic Mechanic","alternateName":["The Organic Mechanic","Hand Krafted Art","O.M."],"url":"https://theorganicmechanic.shop/","logo":"https://theorganicmechanic.shop/assets/images/brand/logo-1024.jpg","image":"https://theorganicmechanic.shop/assets/images/brand/og-default.jpg","email":"theorganicmechanicshop@gmail.com","description":"Original paintings, pressed flower resin jewelry, and psychedelic art apparel by William Bowers.","founder":{"@type":"Person","name":"William Bowers","alternateName":"William Randall Bowers","address":{"@type":"PostalAddress","addressLocality":"Jacksonville","addressRegion":"FL","addressCountry":"US"}},"address":{"@type":"PostalAddress","addressLocality":"Jacksonville","addressRegion":"FL","addressCountry":"US"},"sameAs":["https://instagram.com/theorganicmechanicshop","https://facebook.com/handkraftedproductions","https://pinterest.com/theorganicmechanicshop"]},{"@context":"https://schema.org","@type":"WebSite","name":"the Organic Mechanic","url":"https://theorganicmechanic.shop/","description":"Original paintings, pressed flower resin jewelry, and psychedelic wearable art by William Bowers.","publisher":{"@type":"Organization","name":"the Organic Mechanic","url":"https://theorganicmechanic.shop/"}},{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://theorganicmechanic.shop/"}]}]</script>
   
@@ -73,11 +73,14 @@
 <section class="hero" aria-label="Original paintings by William Bowers" data-hero-slideshow data-hero-variant="hybrid" data-slide-ms="6000" data-pair-reveal-ms="2800">
   <div class="hero-media">
     <div class="hero-slide is-active" data-title="The Lion and the Hare">
-      <picture>
-  <source type="image/avif" srcset="/assets/images/hero/lion-and-the-hare--800.avif 800w, /assets/images/hero/lion-and-the-hare--1600.avif 1600w, /assets/images/hero/lion-and-the-hare--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/lion-and-the-hare--800.webp 800w, /assets/images/hero/lion-and-the-hare--1600.webp 1600w, /assets/images/hero/lion-and-the-hare--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/lion-and-the-hare--1600.jpg" alt="The Lion and the Hare, original painting by William Bowers — a blue hare facing a roaring red lion" width="1600" height="668" fetchpriority="high" decoding="async" style="object-position: center 48%;" >
+      <div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/lion-and-the-hare--800.webp" alt="" width="800" height="334" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/lion-and-the-hare--800.avif 800w, /assets/images/hero/lion-and-the-hare--1600.avif 1600w, /assets/images/hero/lion-and-the-hare--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/lion-and-the-hare--800.webp 800w, /assets/images/hero/lion-and-the-hare--1600.webp 1600w, /assets/images/hero/lion-and-the-hare--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/lion-and-the-hare--1600.jpg" alt="The Lion and the Hare, original painting by William Bowers — a blue hare facing a roaring red lion" width="1600" height="668" fetchpriority="high" decoding="async" >
 </picture>
+      </figure>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
       <p class="hero-art-title">The Lion and the Hare</p>
@@ -86,11 +89,12 @@
     <div class="hero-slide hero-slide--pair" data-title="The Lion and the Hare" data-product-name="Unisex Bomber Jacket" data-product-url="https://theorganicmechanic.bigcartel.com/product/unisex-bomber-jacket" data-cta="Shop the bomber jacket">
 <template>
       <div class="hero-pair">
-        <figure class="hero-pair-art" data-object-position="center 48%">
+        <figure class="hero-pair-art">
+          <div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/lion-and-the-hare--800.webp" alt="" width="800" height="334" loading="lazy" decoding="async"></div>
           <picture>
-  <source type="image/avif" srcset="/assets/images/hero/lion-and-the-hare--800.avif 800w, /assets/images/hero/lion-and-the-hare--1600.avif 1600w, /assets/images/hero/lion-and-the-hare--2400.avif 2400w" sizes="(min-width: 861px) 58vw, 100vw">
-  <source type="image/webp" srcset="/assets/images/hero/lion-and-the-hare--800.webp 800w, /assets/images/hero/lion-and-the-hare--1600.webp 1600w, /assets/images/hero/lion-and-the-hare--2400.webp 2400w" sizes="(min-width: 861px) 58vw, 100vw">
-  <img src="/assets/images/hero/lion-and-the-hare--1600.jpg" alt="The Lion and the Hare, original painting by William Bowers" width="1600" height="668" loading="lazy" decoding="async" style="object-position: center 48%;" >
+  <source type="image/avif" srcset="/assets/images/hero/lion-and-the-hare--800.avif 800w, /assets/images/hero/lion-and-the-hare--1600.avif 1600w, /assets/images/hero/lion-and-the-hare--2400.avif 2400w" sizes="(min-width: 861px) 40vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/lion-and-the-hare--800.webp 800w, /assets/images/hero/lion-and-the-hare--1600.webp 1600w, /assets/images/hero/lion-and-the-hare--2400.webp 2400w" sizes="(min-width: 861px) 40vw, 92vw">
+  <img src="/assets/images/hero/lion-and-the-hare--1600.jpg" alt="The Lion and the Hare, original painting by William Bowers" width="1600" height="668" loading="lazy" decoding="async" >
 </picture>
         </figure>
         <figure class="hero-pair-product">
@@ -111,11 +115,14 @@
     </div>
     <div class="hero-slide" data-title="The Pondering">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/the-pondering--800.avif 800w, /assets/images/hero/the-pondering--1600.avif 1600w, /assets/images/hero/the-pondering--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/the-pondering--800.webp 800w, /assets/images/hero/the-pondering--1600.webp 1600w, /assets/images/hero/the-pondering--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/the-pondering--1600.jpg" alt="The Pondering, original acrylic painting by William Bowers — a surreal contemplative figure in blue, gold, and magenta" width="1600" height="1804" loading="lazy" decoding="async" style="object-position: center 28%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/the-pondering--800.webp" alt="" width="800" height="902" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/the-pondering--800.avif 800w, /assets/images/hero/the-pondering--1600.avif 1600w, /assets/images/hero/the-pondering--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/the-pondering--800.webp 800w, /assets/images/hero/the-pondering--1600.webp 1600w, /assets/images/hero/the-pondering--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/the-pondering--1600.jpg" alt="The Pondering, original acrylic painting by William Bowers — a surreal contemplative figure in blue, gold, and magenta" width="1600" height="1804" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -125,11 +132,12 @@
     <div class="hero-slide hero-slide--pair" data-title="The Pondering" data-product-name="“Ponder” Youth cotton crew neck t-shirt" data-product-url="https://theorganicmechanic.bigcartel.com/product/youth-cotton-crew-neck-t-shirt" data-cta="Shop the Ponder tee">
 <template>
       <div class="hero-pair">
-        <figure class="hero-pair-art" data-object-position="center 28%">
+        <figure class="hero-pair-art">
+          <div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/the-pondering--800.webp" alt="" width="800" height="902" loading="lazy" decoding="async"></div>
           <picture>
-  <source type="image/avif" srcset="/assets/images/hero/the-pondering--800.avif 800w, /assets/images/hero/the-pondering--1600.avif 1600w, /assets/images/hero/the-pondering--2400.avif 2400w" sizes="(min-width: 861px) 58vw, 100vw">
-  <source type="image/webp" srcset="/assets/images/hero/the-pondering--800.webp 800w, /assets/images/hero/the-pondering--1600.webp 1600w, /assets/images/hero/the-pondering--2400.webp 2400w" sizes="(min-width: 861px) 58vw, 100vw">
-  <img src="/assets/images/hero/the-pondering--1600.jpg" alt="The Pondering, original acrylic painting by William Bowers" width="1600" height="1804" loading="lazy" decoding="async" style="object-position: center 28%;" >
+  <source type="image/avif" srcset="/assets/images/hero/the-pondering--800.avif 800w, /assets/images/hero/the-pondering--1600.avif 1600w, /assets/images/hero/the-pondering--2400.avif 2400w" sizes="(min-width: 861px) 40vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/the-pondering--800.webp 800w, /assets/images/hero/the-pondering--1600.webp 1600w, /assets/images/hero/the-pondering--2400.webp 2400w" sizes="(min-width: 861px) 40vw, 92vw">
+  <img src="/assets/images/hero/the-pondering--1600.jpg" alt="The Pondering, original acrylic painting by William Bowers" width="1600" height="1804" loading="lazy" decoding="async" >
 </picture>
         </figure>
         <figure class="hero-pair-product">
@@ -150,11 +158,14 @@
     </div>
     <div class="hero-slide" data-title="Cepla-Producer">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/cepla-producer--800.avif 800w, /assets/images/hero/cepla-producer--1600.avif 1600w, /assets/images/hero/cepla-producer--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/cepla-producer--800.webp 800w, /assets/images/hero/cepla-producer--1600.webp 1600w, /assets/images/hero/cepla-producer--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/cepla-producer--1600.jpg" alt="Cepla-Producer (Octopus on Keys), original painting by William Bowers — a cosmic octopus with headphones playing a keyboard" width="1600" height="1067" loading="lazy" decoding="async" style="object-position: center 42%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/cepla-producer--800.webp" alt="" width="800" height="533" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/cepla-producer--800.avif 800w, /assets/images/hero/cepla-producer--1600.avif 1600w, /assets/images/hero/cepla-producer--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/cepla-producer--800.webp 800w, /assets/images/hero/cepla-producer--1600.webp 1600w, /assets/images/hero/cepla-producer--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/cepla-producer--1600.jpg" alt="Cepla-Producer (Octopus on Keys), original painting by William Bowers — a cosmic octopus with headphones playing a keyboard" width="1600" height="1067" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -163,11 +174,14 @@
     </div>
     <div class="hero-slide" data-title="The Light Conductor">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/the-light-conductor--800.avif 800w, /assets/images/hero/the-light-conductor--1600.avif 1600w, /assets/images/hero/the-light-conductor--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/the-light-conductor--800.webp 800w, /assets/images/hero/the-light-conductor--1600.webp 1600w, /assets/images/hero/the-light-conductor--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/the-light-conductor--1600.jpg" alt="The Light Conductor, original painting by William Bowers — a visored figure conducting beams of light" width="1600" height="2001" loading="lazy" decoding="async" style="object-position: center 32%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/the-light-conductor--800.webp" alt="" width="800" height="1000" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/the-light-conductor--800.avif 800w, /assets/images/hero/the-light-conductor--1600.avif 1600w, /assets/images/hero/the-light-conductor--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/the-light-conductor--800.webp 800w, /assets/images/hero/the-light-conductor--1600.webp 1600w, /assets/images/hero/the-light-conductor--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/the-light-conductor--1600.jpg" alt="The Light Conductor, original painting by William Bowers — a visored figure conducting beams of light" width="1600" height="2001" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -177,11 +191,12 @@
     <div class="hero-slide hero-slide--pair" data-title="The Light Conductor" data-product-name="Unisex Bomber Jacket" data-product-url="https://theorganicmechanic.bigcartel.com/product/unisex-bomber-jacket" data-cta="Shop the bomber jacket">
 <template>
       <div class="hero-pair">
-        <figure class="hero-pair-art" data-object-position="center 32%">
+        <figure class="hero-pair-art">
+          <div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/the-light-conductor--800.webp" alt="" width="800" height="1000" loading="lazy" decoding="async"></div>
           <picture>
-  <source type="image/avif" srcset="/assets/images/hero/the-light-conductor--800.avif 800w, /assets/images/hero/the-light-conductor--1600.avif 1600w, /assets/images/hero/the-light-conductor--2400.avif 2400w" sizes="(min-width: 861px) 58vw, 100vw">
-  <source type="image/webp" srcset="/assets/images/hero/the-light-conductor--800.webp 800w, /assets/images/hero/the-light-conductor--1600.webp 1600w, /assets/images/hero/the-light-conductor--2400.webp 2400w" sizes="(min-width: 861px) 58vw, 100vw">
-  <img src="/assets/images/hero/the-light-conductor--1600.jpg" alt="The Light Conductor, original painting by William Bowers" width="1600" height="2001" loading="lazy" decoding="async" style="object-position: center 32%;" >
+  <source type="image/avif" srcset="/assets/images/hero/the-light-conductor--800.avif 800w, /assets/images/hero/the-light-conductor--1600.avif 1600w, /assets/images/hero/the-light-conductor--2400.avif 2400w" sizes="(min-width: 861px) 40vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/the-light-conductor--800.webp 800w, /assets/images/hero/the-light-conductor--1600.webp 1600w, /assets/images/hero/the-light-conductor--2400.webp 2400w" sizes="(min-width: 861px) 40vw, 92vw">
+  <img src="/assets/images/hero/the-light-conductor--1600.jpg" alt="The Light Conductor, original painting by William Bowers" width="1600" height="2001" loading="lazy" decoding="async" >
 </picture>
         </figure>
         <figure class="hero-pair-product">
@@ -202,11 +217,14 @@
     </div>
     <div class="hero-slide" data-title="Sacred Samurai">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/sacred-samurai--800.avif 800w, /assets/images/hero/sacred-samurai--1600.avif 1600w, /assets/images/hero/sacred-samurai--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/sacred-samurai--800.webp 800w, /assets/images/hero/sacred-samurai--1600.webp 1600w, /assets/images/hero/sacred-samurai--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/sacred-samurai--1600.jpg" alt="Sacred Samurai, original painting by William Bowers — a samurai silhouette against a violet and rose field" width="1600" height="2119" loading="lazy" decoding="async" style="object-position: center 35%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/sacred-samurai--800.webp" alt="" width="800" height="1059" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/sacred-samurai--800.avif 800w, /assets/images/hero/sacred-samurai--1600.avif 1600w, /assets/images/hero/sacred-samurai--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/sacred-samurai--800.webp 800w, /assets/images/hero/sacred-samurai--1600.webp 1600w, /assets/images/hero/sacred-samurai--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/sacred-samurai--1600.jpg" alt="Sacred Samurai, original painting by William Bowers — a samurai silhouette against a violet and rose field" width="1600" height="2119" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -215,11 +233,14 @@
     </div>
     <div class="hero-slide" data-title="Cosmic Owl">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/cosmic-owl--800.avif 800w, /assets/images/hero/cosmic-owl--1600.avif 1600w, /assets/images/hero/cosmic-owl--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/cosmic-owl--800.webp 800w, /assets/images/hero/cosmic-owl--1600.webp 1600w, /assets/images/hero/cosmic-owl--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/cosmic-owl--1600.jpg" alt="Cosmic Owl, original psychedelic mandala acrylic painting on a round canvas by William Bowers" width="1600" height="1522" loading="lazy" decoding="async" style="object-position: center 45%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/cosmic-owl--800.webp" alt="" width="800" height="761" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/cosmic-owl--800.avif 800w, /assets/images/hero/cosmic-owl--1600.avif 1600w, /assets/images/hero/cosmic-owl--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/cosmic-owl--800.webp 800w, /assets/images/hero/cosmic-owl--1600.webp 1600w, /assets/images/hero/cosmic-owl--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/cosmic-owl--1600.jpg" alt="Cosmic Owl, original psychedelic mandala acrylic painting on a round canvas by William Bowers" width="1600" height="1522" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -228,11 +249,14 @@
     </div>
     <div class="hero-slide" data-title="Heady Jellys">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/heady-jellys--800.avif 800w, /assets/images/hero/heady-jellys--1600.avif 1600w, /assets/images/hero/heady-jellys--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/heady-jellys--800.webp 800w, /assets/images/hero/heady-jellys--1600.webp 1600w, /assets/images/hero/heady-jellys--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/heady-jellys--1600.jpg" alt="Heady Jellys, original painting by William Bowers — two vivid jellyfish in a teal sea" width="1600" height="2187" loading="lazy" decoding="async" style="object-position: center 30%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/heady-jellys--800.webp" alt="" width="800" height="1093" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/heady-jellys--800.avif 800w, /assets/images/hero/heady-jellys--1600.avif 1600w, /assets/images/hero/heady-jellys--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/heady-jellys--800.webp 800w, /assets/images/hero/heady-jellys--1600.webp 1600w, /assets/images/hero/heady-jellys--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/heady-jellys--1600.jpg" alt="Heady Jellys, original painting by William Bowers — two vivid jellyfish in a teal sea" width="1600" height="2187" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -241,11 +265,14 @@
     </div>
     <div class="hero-slide" data-title="Electric Lady">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/electric-lady--800.avif 800w, /assets/images/hero/electric-lady--1600.avif 1600w, /assets/images/hero/electric-lady--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/electric-lady--800.webp 800w, /assets/images/hero/electric-lady--1600.webp 1600w, /assets/images/hero/electric-lady--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/electric-lady--1600.jpg" alt="Electric Lady, original mixed-media sculpture on fractal-burned live-edge wood by William Bowers" width="1600" height="2373" loading="lazy" decoding="async" style="object-position: center 35%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/electric-lady--800.webp" alt="" width="800" height="1186" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/electric-lady--800.avif 800w, /assets/images/hero/electric-lady--1600.avif 1600w, /assets/images/hero/electric-lady--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/electric-lady--800.webp 800w, /assets/images/hero/electric-lady--1600.webp 1600w, /assets/images/hero/electric-lady--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/electric-lady--1600.jpg" alt="Electric Lady, original mixed-media sculpture on fractal-burned live-edge wood by William Bowers" width="1600" height="2373" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -254,11 +281,14 @@
     </div>
     <div class="hero-slide" data-title="Ghost Whispers">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/ghost-whispers--800.avif 800w, /assets/images/hero/ghost-whispers--1600.avif 1600w, /assets/images/hero/ghost-whispers--2034.avif 2034w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/ghost-whispers--800.webp 800w, /assets/images/hero/ghost-whispers--1600.webp 1600w, /assets/images/hero/ghost-whispers--2034.webp 2034w" sizes="100vw">
-  <img src="/assets/images/hero/ghost-whispers--1600.jpg" alt="Ghost Whispers, original painting by William Bowers — a mechanical being with flanking spirit faces" width="1600" height="2239" loading="lazy" decoding="async" style="object-position: center 28%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/ghost-whispers--800.webp" alt="" width="800" height="1119" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/ghost-whispers--800.avif 800w, /assets/images/hero/ghost-whispers--1600.avif 1600w, /assets/images/hero/ghost-whispers--2034.avif 2034w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/ghost-whispers--800.webp 800w, /assets/images/hero/ghost-whispers--1600.webp 1600w, /assets/images/hero/ghost-whispers--2034.webp 2034w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/ghost-whispers--1600.jpg" alt="Ghost Whispers, original painting by William Bowers — a mechanical being with flanking spirit faces" width="1600" height="2239" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -267,11 +297,14 @@
     </div>
     <div class="hero-slide" data-title="Tree House">
       <template>
-<picture>
-  <source type="image/avif" srcset="/assets/images/hero/tree-house--800.avif 800w, /assets/images/hero/tree-house--1600.avif 1600w, /assets/images/hero/tree-house--2400.avif 2400w" sizes="100vw">
-  <source type="image/webp" srcset="/assets/images/hero/tree-house--800.webp 800w, /assets/images/hero/tree-house--1600.webp 1600w, /assets/images/hero/tree-house--2400.webp 2400w" sizes="100vw">
-  <img src="/assets/images/hero/tree-house--1600.jpg" alt="Tree House, original painting by William Bowers — a cabin perched in twisted golden roots" width="1600" height="2112" loading="lazy" decoding="async" style="object-position: center 40%;" >
+<div class="hero-art-bg" aria-hidden="true"><img src="/assets/images/hero/tree-house--800.webp" alt="" width="800" height="1056" loading="lazy" decoding="async"></div>
+      <figure class="hero-art-frame">
+        <picture>
+  <source type="image/avif" srcset="/assets/images/hero/tree-house--800.avif 800w, /assets/images/hero/tree-house--1600.avif 1600w, /assets/images/hero/tree-house--2400.avif 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <source type="image/webp" srcset="/assets/images/hero/tree-house--800.webp 800w, /assets/images/hero/tree-house--1600.webp 1600w, /assets/images/hero/tree-house--2400.webp 2400w" sizes="(min-width: 861px) 55vw, 92vw">
+  <img src="/assets/images/hero/tree-house--1600.jpg" alt="Tree House, original painting by William Bowers — a cabin perched in twisted golden roots" width="1600" height="2112" loading="lazy" decoding="async" >
 </picture>
+      </figure>
 </template>
     <div class="hero-caption">
       <span class="eyebrow">Original painting</span>
@@ -1005,7 +1038,7 @@
       <span>Checkout is securely handled by Big Cartel.</span>
     </div>
   </footer>
-  <script src="/assets/js/hero.js" defer></script>
+  <script src="/assets/js/hero.js?v=20261121c" defer></script>
   <script src="/assets/js/main.js" defer></script>
 </body>
 </html>
