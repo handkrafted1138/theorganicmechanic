@@ -47,7 +47,8 @@
 
   /* Hero parallax + slideshow */
   const hero = document.querySelector(".hero");
-  if (hero) {
+  // Hero slideshow is owned by /assets/js/hero.js when data-hero-slideshow is present.
+  if (hero && !hero.hasAttribute("data-hero-slideshow")) {
     const hydrate = () => {
       hero.querySelectorAll(".hero-slide template").forEach((tpl) => {
         tpl.parentNode.appendChild(tpl.content.cloneNode(true));

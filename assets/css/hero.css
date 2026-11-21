@@ -1,0 +1,373 @@
+/* Homepage original-art slideshow — written by build/build.py. Do not edit in the Pages repo; edit the build template. */
+
+.hero {
+  --hero-fade: 1.8s;
+  --hero-slide-ms: 6000;
+}
+
+.hero-slide {
+  transition: opacity var(--hero-fade) var(--ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.hero-slide.is-active {
+  z-index: 1;
+}
+
+.hero-slide img,
+.hero-slide picture,
+.hero-slide picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  transform: scale(1.04);
+  will-change: transform, opacity;
+}
+
+.hero-slide.is-active img,
+.hero-slide.is-active picture img {
+  animation: hero-ken 14s var(--ease, cubic-bezier(0.22, 1, 0.36, 1)) both;
+}
+
+@keyframes hero-ken {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.10); }
+}
+
+.hero-caption {
+  position: absolute;
+  left: max(1.25rem, calc((100% - var(--max, 76rem)) / 2));
+  bottom: 2.15rem;
+  z-index: 3;
+  max-width: min(22rem, calc(100% - 8rem));
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(0.4rem);
+  transition: opacity var(--hero-fade) var(--ease, cubic-bezier(0.22, 1, 0.36, 1)),
+              transform var(--hero-fade) var(--ease, cubic-bezier(0.22, 1, 0.36, 1));
+}
+
+.hero-slide.is-active .hero-caption {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+.hero-caption .eyebrow {
+  margin-bottom: 0.25rem;
+  font-size: 0.62rem;
+}
+
+.hero-caption .hero-art-title {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+  color: var(--ivory);
+  text-shadow: 0 1px 12px rgba(10, 10, 10, 0.55);
+}
+
+.hero-caption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+  color: var(--gold-bright);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  pointer-events: auto;
+}
+
+.hero-caption a:hover { color: var(--ivory); }
+
+/* Push the existing CTA copy up a little so it doesn't collide with the caption. */
+.hero .hero-copy { padding-bottom: 7.5rem; }
+
+.hero-dots {
+  bottom: 2rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: min(22rem, 46vw);
+}
+
+/* ---- Pairing slides: side-by-side on wide screens ---- */
+.hero-slide--pair .hero-pair {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  background: #0a0a0a;
+}
+
+.hero-pair-art,
+.hero-pair-product {
+  position: relative;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.hero-pair-art img,
+.hero-pair-art picture,
+.hero-pair-art picture img {
+  object-fit: cover;
+}
+
+.hero-pair-product {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 50% 45%, #1c1c1c 0%, #0a0a0a 72%);
+  border-left: 1px solid rgba(196, 164, 106, 0.28);
+}
+
+.hero-pair-product img,
+.hero-pair-product picture,
+.hero-pair-product picture img {
+  width: min(86%, 34rem);
+  height: auto;
+  max-height: 86%;
+  object-fit: contain;
+  transform: none;
+  animation: none;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45));
+}
+
+.hero-pair-kicker {
+  position: absolute;
+  top: calc(var(--header-h, 4.5rem) + 0.9rem);
+  right: max(1.25rem, calc((100% - var(--max, 76rem)) / 2));
+  z-index: 3;
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(10, 10, 10, 0.45);
+  border: 1px solid rgba(196, 164, 106, 0.3);
+  padding: 0.35rem 0.65rem;
+  backdrop-filter: blur(8px);
+}
+
+/* Mobile / narrow: product first, then crossfade to the painting */
+@media (max-width: 860px) {
+  .hero-slide--pair .hero-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-pair-art,
+  .hero-pair-product {
+    position: absolute;
+    inset: 0;
+    border: 0;
+    background: #0a0a0a;
+  }
+
+  .hero-pair-product {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity var(--hero-fade) var(--ease, cubic-bezier(0.22, 1, 0.36, 1));
+  }
+
+  .hero-pair-art {
+    opacity: 0;
+    z-index: 2;
+    transition: opacity var(--hero-fade) var(--ease, cubic-bezier(0.22, 1, 0.36, 1));
+  }
+
+  .hero-slide--pair.is-pair-reveal .hero-pair-product { opacity: 0; }
+  .hero-slide--pair.is-pair-reveal .hero-pair-art { opacity: 1; }
+
+  .hero-pair-product img,
+  .hero-pair-product picture,
+  .hero-pair-product picture img {
+    width: 100%;
+    height: 100%;
+    max-height: none;
+    object-fit: contain;
+    object-position: center 40%;
+    filter: none;
+    padding: 4.5rem 1.2rem 7rem;
+    box-sizing: border-box;
+  }
+
+  .hero-pair-art img,
+  .hero-pair-art picture,
+  .hero-pair-art picture img {
+    object-fit: cover;
+  }
+
+  .hero-caption { max-width: calc(100% - 2.4rem); }
+  .hero-dots { max-width: 42vw; }
+}
+
+/* Sequential variant: pairings are two full-bleed slides, no split layout */
+.hero[data-hero-variant="sequential"] .hero-slide--product img,
+.hero[data-hero-variant="sequential"] .hero-slide--product picture img {
+  object-fit: contain;
+  object-position: center;
+  transform: none;
+  animation: none;
+  background: #0a0a0a;
+  padding: 5rem 8% 7rem;
+  box-sizing: border-box;
+}
+
+.hero[data-hero-variant="sequential"] .hero-slide--product {
+  background: radial-gradient(ellipse at 50% 45%, #1c1c1c 0%, #0a0a0a 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide { transition: none; }
+  .hero-slide img,
+  .hero-slide picture img,
+  .hero-slide.is-active img,
+  .hero-slide.is-active picture img {
+    transform: none !important;
+    animation: none !important;
+  }
+  .hero-caption { opacity: 1; transform: none; transition: none; }
+  .hero-pair-product,
+  .hero-pair-art { transition: none; }
+  /* Show the painting, not a mid-fade, when motion is reduced. */
+  .hero-slide--pair .hero-pair-art { opacity: 1; }
+  .hero-slide--pair .hero-pair-product { opacity: 0; }
+  @media (min-width: 861px) {
+    .hero-slide--pair .hero-pair-product { opacity: 1; }
+  }
+}
+
+/* Compact indicators — override the large 2.75rem hit-areas in style.css so 13 dots stay on one row. */
+.hero[data-hero-slideshow] .hero-dots {
+  flex-wrap: nowrap;
+  gap: 0.15rem;
+  max-width: none;
+  bottom: 1.1rem;
+  align-items: center;
+}
+.hero[data-hero-slideshow] .hero-dots button {
+  width: 0.9rem;
+  height: 1.55rem;
+  background: transparent !important;
+  box-shadow: none !important;
+  display: grid;
+  place-items: center;
+  padding: 0;
+}
+.hero[data-hero-slideshow] .hero-dots button::before {
+  content: "";
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 50%;
+  background: rgba(246, 241, 230, 0.42);
+  box-shadow: 0 0 0 1px rgba(10, 10, 10, 0.45);
+}
+.hero[data-hero-slideshow] .hero-dots button[aria-current="true"] {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+.hero[data-hero-slideshow] .hero-dots button[aria-current="true"]::before {
+  width: 0.9rem;
+  height: 0.36rem;
+  border-radius: 99px;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px var(--gold-dim);
+}
+
+.hero[data-hero-slideshow] .hero-media::after {
+  background:
+    linear-gradient(to top, rgba(10,10,10,0.97) 0%, rgba(10,10,10,0.58) 36%, rgba(10,10,10,0.2) 66%, rgba(10,10,10,0.42) 100%),
+    linear-gradient(to right, rgba(10,10,10,0.64), transparent 52%);
+}
+
+.hero[data-hero-slideshow] .hero-copy { padding-bottom: 7.75rem; }
+
+/* Sequential variant: paintings stay full-bleed; product stills are contained on black. */
+.hero[data-hero-variant="sequential"] .hero-pair-art,
+.hero[data-hero-variant="sequential"] .hero-pair-product {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  border: 0;
+  display: block;
+  background: #0a0a0a;
+}
+.hero[data-hero-variant="sequential"] .hero-slide--art img,
+.hero[data-hero-variant="sequential"] .hero-slide--art picture,
+.hero[data-hero-variant="sequential"] .hero-slide--art picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  padding: 0;
+}
+.hero[data-hero-variant="sequential"] .hero-slide--product {
+  background: radial-gradient(ellipse at 50% 45%, #1c1c1c 0%, #0a0a0a 70%);
+}
+.hero[data-hero-variant="sequential"] .hero-slide--product img,
+.hero[data-hero-variant="sequential"] .hero-slide--product picture,
+.hero[data-hero-variant="sequential"] .hero-slide--product picture img {
+  width: min(52vw, 28rem);
+  height: auto;
+  max-height: 72%;
+  object-fit: contain;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 58%;
+  transform: translate(-50%, -54%);
+  animation: none;
+  filter: drop-shadow(0 18px 40px rgba(0, 0, 0, 0.45));
+}
+
+@media (max-width: 860px) {
+  .hero[data-hero-slideshow] .hero-copy { padding-bottom: 8.2rem; }
+  .hero[data-hero-slideshow] .hero-caption {
+    left: 0.85rem;
+    right: 0.85rem;
+    bottom: 2.35rem;
+    max-width: none;
+  }
+  .hero[data-hero-slideshow] .hero-dots {
+    right: 0.7rem;
+    left: auto;
+    bottom: 0.55rem;
+  }
+  .hero[data-hero-variant="sequential"] .hero-slide--product img,
+  .hero[data-hero-variant="sequential"] .hero-slide--product picture,
+  .hero[data-hero-variant="sequential"] .hero-slide--product picture img {
+    left: 50%;
+    width: min(80vw, 22rem);
+  }
+}
+
+/* Sequential product still: keep the mockup visible on the dark field. */
+.hero[data-hero-variant="sequential"] .hero-slide--product .hero-pair-product {
+  display: grid;
+  place-items: center;
+  padding: 7.2rem 5% 6.5rem 40%;
+  background: transparent;
+  overflow: hidden;
+}
+.hero[data-hero-variant="sequential"] .hero-slide--product picture {
+  position: static;
+  width: auto;
+  height: auto;
+  display: block;
+  max-width: min(24rem, 40vw);
+  max-height: min(58vh, 26rem);
+}
+.hero[data-hero-variant="sequential"] .hero-slide--product img {
+  position: static !important;
+  top: auto;
+  left: auto;
+  transform: none !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: min(24rem, 40vw);
+  max-height: min(58vh, 26rem);
+  object-fit: contain !important;
+  padding: 0 !important;
+  animation: none !important;
+}

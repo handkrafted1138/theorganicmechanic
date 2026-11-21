@@ -12,10 +12,12 @@ This is a plain HTML/CSS/JS site generated for **GitHub Pages**. Checkout stays 
 4. Point the IONOS DNS for `theorganicmechanic.shop` at GitHub Pages once the site is live, and keep `www` in mind if you still want it. The `CNAME` file already contains `theorganicmechanic.shop`.
 5. Leave the Big Cartel store running so checkout, cart, and payments keep working.
 
-Do not put full-resolution scrape files in this repo; images here are already resized (max 2000px) as AVIF, WebP, and JPEG.
+Do not put full-resolution scrape files in this repo; product images are resized (max 2000px) as AVIF, WebP, and JPEG. Homepage hero stills are resized to 800/1600/2400px.
 
 Rebuild from the parent project with:
 
 ```bash
-.venv/bin/python build/build.py
+python3 ../build/build.py --hero-only
 ```
+
+The homepage hero slideshow (original paintings and canvas-to-wearable pairings) is defined in `../build/hero_config.py`. Always re-run the command above after a catalog rebuild so the daily Big Cartel sync cannot replace the hero with the older three-slide set.
