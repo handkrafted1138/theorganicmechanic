@@ -372,7 +372,48 @@
   animation: none !important;
 }
 
-/* ========== Legibility & pairing composition (Nov 20 contrast pass) ========== */
+/* ========== Legibility & pairing composition ==========
+   The parent .hero-media::after sits BEHIND .hero-slide.is-active
+   (slide z-index: 1, ::after z-index: auto), so a media-level scrim
+   never covers the painting. Put the scrim on each slide, above the
+   image and below the caption. */
+
+.hero[data-hero-slideshow] .hero-media::after {
+  /* Disable the hidden parent overlay; the slide scrim is the real one. */
+  background: none;
+}
+
+.hero[data-hero-slideshow] .hero-slide::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  /* Left ~50% of the viewport stays near rgba(10,10,10,.9), then fades out. */
+  background:
+    linear-gradient(
+      to right,
+      rgba(10, 10, 10, 0.94) 0%,
+      rgba(10, 10, 10, 0.90) 38%,
+      rgba(10, 10, 10, 0.82) 50%,
+      rgba(10, 10, 10, 0.45) 62%,
+      rgba(10, 10, 10, 0.12) 74%,
+      transparent 84%
+    ),
+    linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.96) 0%,
+      rgba(10, 10, 10, 0.78) 16%,
+      rgba(10, 10, 10, 0.28) 34%,
+      transparent 52%
+    );
+}
+
+/* Dim the full-bleed art slightly so residual texture can't overpower type. */
+.hero[data-hero-slideshow] .hero-slide:not(.hero-slide--pair) img,
+.hero[data-hero-slideshow] .hero-slide:not(.hero-slide--pair) picture img {
+  filter: brightness(0.72);
+}
 
 .hero[data-hero-slideshow] .hero-copy,
 .hero[data-hero-slideshow] .hero-copy h1,
@@ -385,35 +426,18 @@
 .hero[data-hero-slideshow] .hero-caption a {
   text-shadow:
     0 1px 1px rgba(10, 10, 10, 0.95),
-    0 2px 8px rgba(10, 10, 10, 0.75),
-    0 10px 32px rgba(10, 10, 10, 0.55);
+    0 2px 10px rgba(10, 10, 10, 0.85),
+    0 10px 32px rgba(10, 10, 10, 0.65);
+}
+
+.hero[data-hero-slideshow] .hero-lead {
+  color: var(--ivory);
 }
 
 .hero[data-hero-slideshow] .hero-actions .btn-ghost {
   background: rgba(10, 10, 10, 0.5);
   border-color: rgba(246, 241, 230, 0.55);
   backdrop-filter: blur(8px);
-}
-
-/* Strong left scrim + bottom vignette over full-bleed paintings. */
-.hero[data-hero-slideshow] .hero-media::after {
-  background:
-    linear-gradient(
-      to right,
-      rgba(10, 10, 10, 0.88) 0%,
-      rgba(10, 10, 10, 0.78) 22%,
-      rgba(10, 10, 10, 0.42) 42%,
-      rgba(10, 10, 10, 0.12) 58%,
-      transparent 68%
-    ),
-    linear-gradient(
-      to top,
-      rgba(10, 10, 10, 0.96) 0%,
-      rgba(10, 10, 10, 0.72) 18%,
-      rgba(10, 10, 10, 0.32) 36%,
-      rgba(10, 10, 10, 0.12) 52%,
-      rgba(10, 10, 10, 0.28) 100%
-    );
 }
 
 /* Desktop pairing: dark text rail | painting | jacket — no type sitting on the art. */
@@ -436,16 +460,9 @@
     max-width: 26.5rem;
   }
 
-  /* When a pairing is showing, keep the left rail solid and only a light bottom vignette over the art. */
-  .hero[data-hero-slideshow]:has(.hero-slide--pair.is-active) .hero-media::after {
-    background:
-      linear-gradient(
-        to right,
-        #0a0a0a 0%,
-        #0a0a0a calc(max(1.25rem, (100% - var(--max, 76rem)) / 2) + 26.5rem + 1.75rem),
-        transparent calc(max(1.25rem, (100% - var(--max, 76rem)) / 2) + 26.5rem + 1.85rem)
-      ),
-      linear-gradient(to top, rgba(10, 10, 10, 0.55) 0%, transparent 26%);
+  /* Pairing slides already have a solid text rail; don't wash the painting. */
+  .hero[data-hero-slideshow] .hero-slide--pair::after {
+    background: linear-gradient(to top, rgba(10, 10, 10, 0.45) 0%, transparent 22%);
   }
 }
 
@@ -455,23 +472,34 @@
     display: none;
   }
 
-  /* On small screens the type sits at the bottom — lean harder on the vignette. */
-  .hero[data-hero-slideshow] .hero-media::after {
+  /* Type sits over the lower-left of the painting — heavy vignette + left wash. */
+  .hero[data-hero-slideshow] .hero-slide::after {
     background:
       linear-gradient(
         to top,
-        rgba(10, 10, 10, 0.97) 0%,
-        rgba(10, 10, 10, 0.88) 16%,
-        rgba(10, 10, 10, 0.55) 32%,
-        rgba(10, 10, 10, 0.22) 50%,
-        rgba(10, 10, 10, 0.18) 100%
+        rgba(10, 10, 10, 0.96) 0%,
+        rgba(10, 10, 10, 0.88) 22%,
+        rgba(10, 10, 10, 0.62) 42%,
+        rgba(10, 10, 10, 0.28) 62%,
+        rgba(10, 10, 10, 0.20) 100%
       ),
       linear-gradient(
         to right,
-        rgba(10, 10, 10, 0.72) 0%,
-        rgba(10, 10, 10, 0.35) 38%,
-        transparent 62%
+        rgba(10, 10, 10, 0.90) 0%,
+        rgba(10, 10, 10, 0.78) 42%,
+        rgba(10, 10, 10, 0.35) 68%,
+        transparent 88%
       );
+  }
+
+  .hero[data-hero-slideshow] .hero-slide--pair::after {
+    background: linear-gradient(
+      to top,
+      rgba(10, 10, 10, 0.96) 0%,
+      rgba(10, 10, 10, 0.78) 16%,
+      rgba(10, 10, 10, 0.2) 32%,
+      transparent 48%
+    );
   }
 }
 
