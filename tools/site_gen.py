@@ -9,6 +9,7 @@ from pathlib import Path
 
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
+import archive as arch
 import catalog as cat
 
 ROOT = Path(__file__).resolve().parent
@@ -277,6 +278,7 @@ def write_sitemap(items):
     for item in items:
         urls.append((f"/product/{item['permalink']}/", "0.8"))
     static = [
+        "/archive/",
         "/about/", "/commissions/", "/faq/", "/contact/",
         "/policies/", "/policies/shipping/", "/policies/returns/",
         "/custom-pet-pillow/",
@@ -312,9 +314,9 @@ def generate_catalog(
 
     By default, existing product pages are kept (so editorial copy is not
     rewritten). New slugs, slugs in changed_slugs, and --rebuild-pages
-    overwrite. Shop listings and the sitemap always refresh when any product
-    page is written, or when overwrite_pages / changed_slugs is set, so a new
-    product always appears in the shop.
+    overwrite. Shop listings, the sitemap, the Past Works Archives page, and redirects
+    for retired slugs always refresh. Retired slugs in tools/retired_slugs.json
+    are excluded from shop listings, counts, and the sitemap.
     """
     if site_dir is not None:
         global SITE
@@ -326,9 +328,11 @@ def generate_catalog(
         cat.SCRAPE_IMG_DIR = cat.SCRAPE / "images" / "products"
 
     titles = cat.load_titles()
-    items = cat.load_products()
+    catalog_items = cat.load_products()
+    retired = cat.load_retired_slugs()
+    items = [p for p in catalog_items if p.get("permalink") not in retired]
     images: dict[str, list] = {}
-    changed_slugs = set(changed_slugs or [])
+    changed_slugs = set(changed_slugs or []) - retired
     for item in items:
         slug = item["permalink"]
         dest = SITE / "product" / slug / "index.html"
@@ -352,26 +356,38 @@ def generate_catalog(
         written.append(render_product(jinja, item, images[item["permalink"]], titles, items, images))
         print(f"  product {slug}")
 
-    refresh_listings = overwrite_pages or bool(changed_slugs) or bool(written)
-    if refresh_listings:
-        written.append(render_shop(jinja, None, items, images, titles))
-        for slug in cat.SECTION_ORDER:
-            written.append(render_shop(jinja, slug, items, images, titles))
-            print(f"  shop {slug}")
-        written.append(write_sitemap(items))
-        print("  sitemap")
-        for slug in refresh_related_on_existing(skipped, items, titles, images):
-            written.append(SITE / "product" / slug / "index.html")
+    # Always refresh listings, sitemap, archive page, and retired-product redirects
+    # so a daily sync cannot put archived slugs back in the shop.
+    written.append(render_shop(jinja, None, items, images, titles))
+    for slug in cat.SECTION_ORDER:
+        written.append(render_shop(jinja, slug, items, images, titles))
+        print(f"  shop {slug}")
+    written.append(write_sitemap(items))
+    print("  sitemap")
+    written.append(arch.render_archive(jinja))
+    print("  archive")
+    for dest in arch.write_retired_redirects(jinja):
+        written.append(dest)
+        print(f"  redirect {dest.parent.name}")
+    for slug in refresh_related_on_existing(skipped, items, titles, images):
+        written.append(SITE / "product" / slug / "index.html")
     removed = []
     product_root = SITE / "product"
     if product_root.exists():
         for folder in sorted(product_root.iterdir()):
-            if folder.is_dir() and folder.name not in live_slugs and (folder / "index.html").exists():
+            if (
+                folder.is_dir()
+                and folder.name not in live_slugs
+                and folder.name not in retired
+                and (folder / "index.html").exists()
+            ):
                 written.append(write_removed_redirect(folder.name))
                 removed.append(folder.name)
                 print(f"  redirect removed {folder.name}")
+    refresh_listings = True
     return {
         "products": len(items),
+        "retired": sorted(retired),
         "written": [str(p) for p in written],
         "skipped_existing": skipped,
         "listings_refreshed": refresh_listings,

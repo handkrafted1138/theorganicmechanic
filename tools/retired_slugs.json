@@ -1,0 +1,14 @@
+{
+  "slugs": [
+    "choose-your-path",
+    "ghostwhispers",
+    "cant-put-my-thumb-on-it",
+    "zeus-the-dog",
+    "pendants",
+    "in-the-depths-shower-curtian",
+    "tapered-stainless-steel-tumbler",
+    "higher-horizons-tapered-stainless-steel-tumbler",
+    "tellie-ellie-tapered-stainless-steel-tumbler"
+  ],
+  "note": "Excluded from shop listings, category pages, counts, and the sitemap. Old /product/<slug>/ URLs redirect to /archive/."
+}

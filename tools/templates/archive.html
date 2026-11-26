@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="page-hero wrap">
+  <span class="eyebrow">The studio</span>
+  <h1>Past Works Archives</h1>
+  <p>Pieces that have left the shop, kept here so their stories and photographs stay with the studio.</p>
+</section>
+
+<section class="wrap">
+  <aside class="archive-banner" role="note">
+    <p>{{ banner | safe }}</p>
+  </aside>
+  <div class="archive-contact">
+    <p>Email William at <a href="mailto:{{ email }}?subject=Past%20works%20archives">{{ email }}</a>, or find the studio here:</p>
+    <p class="archive-socials">
+      {% for s in socials %}
+      <a href="{{ s.url }}" rel="noopener noreferrer" target="_blank">{{ s.name }}</a>{% if not loop.last %}<span aria-hidden="true"> · </span>{% endif %}
+      {% endfor %}
+    </p>
+  </div>
+</section>
+
+<section class="section archive-works" style="padding-top:1.5rem;">
+  <div class="wrap">
+    <p class="count">{{ count_label }}</p>
+    <div class="archive-list">
+      {% for item in items %}
+      <article class="archive-item" id="{{ item.slug }}">
+        <div class="archive-item-gallery" data-gallery>
+          {% if item.pictures %}
+          <button class="gallery-main" type="button" data-gallery-main aria-label="View larger image of {{ item.display_name }}">
+            {{ item.pictures[0].html | safe }}
+          </button>
+          {% if item.pictures|length > 1 %}
+          <div class="thumbs">
+            {% for pic in item.pictures %}
+            <button type="button" data-thumb data-full="{{ pic.full }}" data-webp="{{ pic.webp_srcset }}" data-avif="{{ pic.avif_srcset }}" data-alt="{{ pic.alt }}" aria-label="View image {{ loop.index }} of {{ item.pictures|length }}: {{ item.display_name }}"{% if loop.first %} aria-current="true"{% endif %}>
+              <img src="{{ pic.thumb }}" alt="" width="88" height="88">
+            </button>
+            {% endfor %}
+          </div>
+          {% else %}
+          <button type="button" hidden data-thumb data-full="{{ item.pictures[0].full }}" data-webp="{{ item.pictures[0].webp_srcset }}" data-avif="{{ item.pictures[0].avif_srcset }}" data-alt="{{ item.pictures[0].alt }}" aria-current="true"></button>
+          {% endif %}
+          {% endif %}
+          <div class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+            <button class="lightbox-close" type="button" aria-label="Close">×</button>
+            <img src="" alt="">
+            <button class="lightbox-nav prev" type="button" aria-label="Previous image">‹</button>
+            <button class="lightbox-nav next" type="button" aria-label="Next image">›</button>
+          </div>
+        </div>
+        <div class="archive-item-info">
+          <div class="pdp-badges">
+            <span class="badge badge-sold">Archived</span>
+            {% if item.category %}<span class="badge badge-one">{{ item.category }}</span>{% endif %}
+          </div>
+          <h2>{{ item.display_name }}</h2>
+          {% if item.price_label %}
+          <p class="archive-price">Originally {{ item.price_label }}</p>
+          {% endif %}
+          {% if item.description_html %}
+          <div class="prose">
+            {{ item.description_html | safe }}
+          </div>
+          {% endif %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:0;">
+  <div class="wrap archive-contact archive-contact-footer">
+    <h2>Get in touch</h2>
+    <p>If a piece here should come back out of the archives, email <a href="mailto:{{ email }}?subject=Past%20works%20archives">{{ email }}</a>.</p>
+    <p class="archive-socials">
+      {% for s in socials %}
+      <a href="{{ s.url }}" rel="noopener noreferrer" target="_blank">{{ s.name }}</a>{% if not loop.last %}<span aria-hidden="true"> · </span>{% endif %}
+      {% endfor %}
+    </p>
+  </div>
+</section>
+{% endblock %}

@@ -779,3 +779,64 @@ textarea { min-height: 8rem; resize: vertical; }
   border-bottom: 1px solid var(--line);
   font-size: 0.95rem;
 }
+
+
+/* Past Works Archives */
+.archive-banner {
+  margin: 1.4rem auto 0;
+  padding: 1.35rem 1.5rem;
+  border: 1px solid rgba(196, 164, 106, 0.45);
+  background: var(--gold-dim);
+  box-shadow: 0 0 0 1px rgba(196, 164, 106, 0.12), 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+.archive-banner p {
+  margin: 0;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.25rem, 2.4vw, 1.85rem);
+  line-height: 1.35;
+  color: var(--ivory);
+  text-wrap: pretty;
+}
+.archive-contact {
+  margin: 1.4rem auto 0;
+  max-width: 46rem;
+}
+.archive-contact p { margin: 0 0 0.6rem; }
+.archive-socials a {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--gold) !important;
+}
+.archive-list {
+  display: grid;
+  gap: 3.5rem;
+  margin-top: 1.5rem;
+}
+.archive-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 2rem 2.4rem;
+  align-items: start;
+  padding-bottom: 3.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.archive-item:last-child { border-bottom: 0; padding-bottom: 0; }
+.archive-item-info h2 {
+  margin: 0.35rem 0 0.35rem;
+  font-size: clamp(1.6rem, 3vw, 2.15rem);
+}
+.archive-price {
+  color: var(--gold-bright);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  margin: 0 0 1rem;
+}
+.archive-item .gallery-main { width: 100%; }
+.archive-item .thumbs { margin-top: 0.75rem; }
+.archive-contact-footer h2 { margin-bottom: 0.6rem; }
+@media (max-width: 800px) {
+  .archive-item { grid-template-columns: 1fr; gap: 1.2rem; }
+}

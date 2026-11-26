@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block extra_head %}
+  <meta http-equiv="refresh" content="0;url={{ redirect_to }}">
+{% endblock %}
+{% block main %}
+<section class="page-hero wrap">
+  <span class="eyebrow">Moved</span>
+  <h1>{{ title }}</h1>
+  <p>This piece now lives in the <a href="{{ redirect_to }}">Past Works Archives</a>.</p>
+  <p><a class="btn btn-gold" href="{{ redirect_to }}">View the archives</a></p>
+</section>
+{% endblock %}

@@ -35,3 +35,14 @@ which is also wiped on reset). Recreate it with:
 python3 -m venv /workspace/organic-mechanic/venv-site
 /workspace/organic-mechanic/venv-site/bin/pip install jinja2 pillow pillow-avif-plugin
 ```
+
+## Past Works Archives
+
+Retired products are listed in `retired_slugs.json`. The daily sync excludes
+them from shop listings, category pages, counts, and the sitemap, and writes
+redirects from `/product/<slug>/` to `/archive/`. The archive page is generated
+from `../data/archive.json` (names, descriptions, prices, categories) and
+full-resolution photographs in `../assets/images/archive/<slug>/`.
+
+Do not remove a slug from `retired_slugs.json` without also deciding whether
+it should return to the live shop.

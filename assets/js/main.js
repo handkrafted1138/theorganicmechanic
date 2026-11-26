@@ -89,9 +89,8 @@
     }
   }
 
-  /* Gallery + lightbox */
-  const gallery = document.querySelector("[data-gallery]");
-  if (gallery) {
+  /* Gallery + lightbox (one or many galleries per page) */
+  document.querySelectorAll("[data-gallery]").forEach((gallery) => {
     const mainImg = gallery.querySelector("[data-gallery-main] img");
     const mainPic = gallery.querySelector("[data-gallery-main] picture");
     const thumbs = [...gallery.querySelectorAll("[data-thumb]")];
@@ -120,7 +119,7 @@
     };
     thumbs.forEach((t, n) => t.addEventListener("click", () => applyMain(n)));
 
-    const lb = document.querySelector(".lightbox");
+    const lb = gallery.querySelector(".lightbox") || document.querySelector(".lightbox");
     const lbImg = lb?.querySelector("img");
     const open = (n) => {
       if (!lb || !lbImg) return;
@@ -148,7 +147,7 @@
       if (e.key === "ArrowLeft") open((idx - 1 + sources.length) % sources.length);
       if (e.key === "ArrowRight") open((idx + 1) % sources.length);
     });
-  }
+  });
 
   /* Contact form → mailto */
   const form = document.querySelector("[data-mailto-form]");

@@ -18,6 +18,7 @@ SCRAPE = SITE.parent / "scrape"
 PRODUCT_IMG_DIR = SITE / "assets" / "images" / "products"
 SCRAPE_IMG_DIR = SCRAPE / "images" / "products"
 TITLES_PATH = ROOT / "display_titles.json"
+RETIRED_PATH = ROOT / "retired_slugs.json"
 SITE_ORIGIN = "https://theorganicmechanic.shop"
 BUY = "https://theorganicmechanic.bigcartel.com/product"
 
@@ -129,9 +130,9 @@ SECTIONS = {
         "crumb": "Home",
         "heading": "Art for the house.",
         "eyebrow": "Live with the work",
-        "blurb": "Pillows, tumblers, a shower curtain, a wall flag, and a phone case — plus custom-shaped pet pillows from your photograph.",
+        "blurb": "Pillows, a wall flag, and a phone case — plus custom-shaped pet pillows from your photograph.",
         "meta_title": "Art Home Decor | the Organic Mechanic",
-        "meta_desc": "Art pillows, tumblers, a shower curtain, and a wall flag printed with original work by William Bowers, plus custom pet pillows.",
+        "meta_desc": "Art pillows, a wall flag, and a phone case printed with original work by William Bowers, plus custom pet pillows.",
         "grid": "grid",
     },
 }
@@ -143,9 +144,26 @@ def load_titles() -> dict[str, str]:
     return {}
 
 
+def load_retired_slugs() -> set[str]:
+    """Slugs hidden from shop listings, counts, and the sitemap."""
+    if not RETIRED_PATH.exists():
+        return set()
+    data = json.loads(RETIRED_PATH.read_text(encoding="utf-8"))
+    if isinstance(data, dict):
+        return set(data.get("slugs") or [])
+    if isinstance(data, list):
+        return set(data)
+    return set()
+
+
 def load_products() -> list[dict]:
     data = json.loads((SCRAPE / "products.json").read_text(encoding="utf-8"))
     return list(data.get("products") or [])
+
+
+def load_shop_products() -> list[dict]:
+    retired = load_retired_slugs()
+    return [p for p in load_products() if p.get("permalink") not in retired]
 
 
 def display_title(slug: str, name: str, titles: dict | None = None) -> str:
