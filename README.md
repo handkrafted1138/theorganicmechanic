@@ -17,7 +17,7 @@ Do not put full-resolution scrape files in this repo; product images are resized
 Rebuild from the parent project with the project venv (this is also the command the daily Big Cartel sync should run):
 
 ```bash
-/workspace/organic-mechanic/.venv/bin/python /workspace/organic-mechanic/build/build.py
+/workspace/organic-mechanic/venv-site/bin/python /workspace/organic-mechanic/site/tools/build.py
 ```
 
 That fetches Big Cartel, rebuilds any new or changed product pages and shop listings, then re-applies the homepage hero last so the catalog rebuild cannot wipe it.
@@ -25,7 +25,9 @@ That fetches Big Cartel, rebuilds any new or changed product pages and shop list
 Hero-only:
 
 ```bash
-/workspace/organic-mechanic/.venv/bin/python /workspace/organic-mechanic/build/build.py --hero-only
+/workspace/organic-mechanic/venv-site/bin/python /workspace/organic-mechanic/site/tools/build.py --hero-only
 ```
 
-The slideshow is defined in `../build/hero_config.py`.
+The slideshow is defined in `tools/hero_config.py`.
+
+The generator lives in `tools/` (inside this repo). Do not put it in a folder named `build`, `dist`, `out`, or a dot-directory like `.venv` — those are wiped when the box is reset.

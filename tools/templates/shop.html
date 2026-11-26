@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block main %}
+<section class="page-hero wrap">
+  <span class="eyebrow">{{ eyebrow }}</span>
+  <h1>{{ heading }}</h1>
+  <p>{{ blurb }}</p>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="toolbar">
+      <p class="count">{{ count_label }}</p>
+      <p class="count">
+        <a href="/shop/"{% if not section_slug %} aria-current="page"{% endif %}>All</a> ·
+        <a href="/shop/original-paintings/"{% if section_slug == 'original-paintings' %} aria-current="page"{% endif %}>Original paintings</a> ·
+        <a href="/shop/jewelry/"{% if section_slug == 'jewelry' %} aria-current="page"{% endif %}>Pressed flower jewelry</a> ·
+        <a href="/shop/resin-art/"{% if section_slug == 'resin-art' %} aria-current="page"{% endif %}>Resin art &amp; boxes</a> ·
+        <a href="/shop/apparel/"{% if section_slug == 'apparel' %} aria-current="page"{% endif %}>Apparel</a> ·
+        <a href="/shop/bags/"{% if section_slug == 'bags' %} aria-current="page"{% endif %}>Bags</a> ·
+        <a href="/shop/home/"{% if section_slug == 'home' %} aria-current="page"{% endif %}>Home</a>
+      </p>
+    </div>
+    <div class="grid {{ grid_class }}">
+      {% for card in cards %}
+        {{ card | safe }}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

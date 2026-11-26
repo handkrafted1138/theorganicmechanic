@@ -1,0 +1,512 @@
+{
+  "variant": "hybrid",
+  "timing": {
+    "slide_ms": 6000,
+    "fade_ms": 1800,
+    "pair_reveal_ms": 2800
+  },
+  "images": {
+    "lion-and-the-hare": {
+      "stem": "lion-and-the-hare",
+      "source": "/workspace/prints2/masters/Lion_vs_hare_300dpi.jpg",
+      "native": [
+        10776,
+        4497
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "lion-and-the-hare--800.jpg",
+          ".webp": "lion-and-the-hare--800.webp",
+          ".avif": "lion-and-the-hare--800.avif"
+        },
+        "1600": {
+          ".jpg": "lion-and-the-hare--1600.jpg",
+          ".webp": "lion-and-the-hare--1600.webp",
+          ".avif": "lion-and-the-hare--1600.avif"
+        },
+        "2400": {
+          ".jpg": "lion-and-the-hare--2400.jpg",
+          ".webp": "lion-and-the-hare--2400.webp",
+          ".avif": "lion-and-the-hare--2400.avif"
+        }
+      }
+    },
+    "pair-lion-bomber-product": {
+      "stem": "pair-lion-bomber-product",
+      "source": "/workspace/organic-mechanic/scrape/images/products/unisex-bomber-jacket__02__all-over-print-unisex-bomber-jacket-white-front-6a80486d0c035.jpg",
+      "native": [
+        2000,
+        2000
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "pair-lion-bomber-product--800.jpg",
+          ".webp": "pair-lion-bomber-product--800.webp",
+          ".avif": "pair-lion-bomber-product--800.avif"
+        },
+        "1600": {
+          ".jpg": "pair-lion-bomber-product--1600.jpg",
+          ".webp": "pair-lion-bomber-product--1600.webp",
+          ".avif": "pair-lion-bomber-product--1600.avif"
+        },
+        "2000": {
+          ".jpg": "pair-lion-bomber-product--2000.jpg",
+          ".webp": "pair-lion-bomber-product--2000.webp",
+          ".avif": "pair-lion-bomber-product--2000.avif"
+        }
+      }
+    },
+    "the-pondering": {
+      "stem": "the-pondering",
+      "source": "/workspace/prints2/masters/The_pondering_astronaut_300dpi.jpg",
+      "native": [
+        8403,
+        9477
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "the-pondering--800.jpg",
+          ".webp": "the-pondering--800.webp",
+          ".avif": "the-pondering--800.avif"
+        },
+        "1600": {
+          ".jpg": "the-pondering--1600.jpg",
+          ".webp": "the-pondering--1600.webp",
+          ".avif": "the-pondering--1600.avif"
+        },
+        "2400": {
+          ".jpg": "the-pondering--2400.jpg",
+          ".webp": "the-pondering--2400.webp",
+          ".avif": "the-pondering--2400.avif"
+        }
+      }
+    },
+    "pair-ponder-tee-product": {
+      "stem": "pair-ponder-tee-product",
+      "source": "/workspace/organic-mechanic/scrape/images/products/youth-cotton-crew-neck-t-shirt__01__all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a7d420f3ca79.jpg",
+      "native": [
+        2000,
+        2000
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "pair-ponder-tee-product--800.jpg",
+          ".webp": "pair-ponder-tee-product--800.webp",
+          ".avif": "pair-ponder-tee-product--800.avif"
+        },
+        "1600": {
+          ".jpg": "pair-ponder-tee-product--1600.jpg",
+          ".webp": "pair-ponder-tee-product--1600.webp",
+          ".avif": "pair-ponder-tee-product--1600.avif"
+        },
+        "2000": {
+          ".jpg": "pair-ponder-tee-product--2000.jpg",
+          ".webp": "pair-ponder-tee-product--2000.webp",
+          ".avif": "pair-ponder-tee-product--2000.avif"
+        }
+      }
+    },
+    "cepla-producer": {
+      "stem": "cepla-producer",
+      "source": "/workspace/printful/octopus-on-keys_24x36.jpg",
+      "native": [
+        10800,
+        7200
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "cepla-producer--800.jpg",
+          ".webp": "cepla-producer--800.webp",
+          ".avif": "cepla-producer--800.avif"
+        },
+        "1600": {
+          ".jpg": "cepla-producer--1600.jpg",
+          ".webp": "cepla-producer--1600.webp",
+          ".avif": "cepla-producer--1600.avif"
+        },
+        "2400": {
+          ".jpg": "cepla-producer--2400.jpg",
+          ".webp": "cepla-producer--2400.webp",
+          ".avif": "cepla-producer--2400.avif"
+        }
+      }
+    },
+    "the-light-conductor": {
+      "stem": "the-light-conductor",
+      "source": "/workspace/prints2/masters/The_Light_Conductor_300dpi.jpg",
+      "native": [
+        8004,
+        10008
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "the-light-conductor--800.jpg",
+          ".webp": "the-light-conductor--800.webp",
+          ".avif": "the-light-conductor--800.avif"
+        },
+        "1600": {
+          ".jpg": "the-light-conductor--1600.jpg",
+          ".webp": "the-light-conductor--1600.webp",
+          ".avif": "the-light-conductor--1600.avif"
+        },
+        "2400": {
+          ".jpg": "the-light-conductor--2400.jpg",
+          ".webp": "the-light-conductor--2400.webp",
+          ".avif": "the-light-conductor--2400.avif"
+        }
+      }
+    },
+    "pair-conductor-bomber-product": {
+      "stem": "pair-conductor-bomber-product",
+      "source": "/workspace/organic-mechanic/scrape/images/products/unisex-bomber-jacket__01__all-over-print-unisex-bomber-jacket-white-back-6a80486d0bc2d.jpg",
+      "native": [
+        2000,
+        2000
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "pair-conductor-bomber-product--800.jpg",
+          ".webp": "pair-conductor-bomber-product--800.webp",
+          ".avif": "pair-conductor-bomber-product--800.avif"
+        },
+        "1600": {
+          ".jpg": "pair-conductor-bomber-product--1600.jpg",
+          ".webp": "pair-conductor-bomber-product--1600.webp",
+          ".avif": "pair-conductor-bomber-product--1600.avif"
+        },
+        "2000": {
+          ".jpg": "pair-conductor-bomber-product--2000.jpg",
+          ".webp": "pair-conductor-bomber-product--2000.webp",
+          ".avif": "pair-conductor-bomber-product--2000.avif"
+        }
+      }
+    },
+    "sacred-samurai": {
+      "stem": "sacred-samurai",
+      "source": "/workspace/prints2/masters/Symphony_Samurai_300dpi.jpg",
+      "native": [
+        7809,
+        10341
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "sacred-samurai--800.jpg",
+          ".webp": "sacred-samurai--800.webp",
+          ".avif": "sacred-samurai--800.avif"
+        },
+        "1600": {
+          ".jpg": "sacred-samurai--1600.jpg",
+          ".webp": "sacred-samurai--1600.webp",
+          ".avif": "sacred-samurai--1600.avif"
+        },
+        "2400": {
+          ".jpg": "sacred-samurai--2400.jpg",
+          ".webp": "sacred-samurai--2400.webp",
+          ".avif": "sacred-samurai--2400.avif"
+        }
+      }
+    },
+    "cosmic-owl": {
+      "stem": "cosmic-owl",
+      "source": "/workspace/organic-mechanic/scrape/images/products/owl-mandala__02__20260421_084339.jpg",
+      "native": [
+        3000,
+        2854
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "cosmic-owl--800.jpg",
+          ".webp": "cosmic-owl--800.webp",
+          ".avif": "cosmic-owl--800.avif"
+        },
+        "1600": {
+          ".jpg": "cosmic-owl--1600.jpg",
+          ".webp": "cosmic-owl--1600.webp",
+          ".avif": "cosmic-owl--1600.avif"
+        },
+        "2400": {
+          ".jpg": "cosmic-owl--2400.jpg",
+          ".webp": "cosmic-owl--2400.webp",
+          ".avif": "cosmic-owl--2400.avif"
+        }
+      }
+    },
+    "heady-jellys": {
+      "stem": "heady-jellys",
+      "source": "/workspace/prints2/masters/Heady_jellys_300dpi.jpg",
+      "native": [
+        7737,
+        10575
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "heady-jellys--800.jpg",
+          ".webp": "heady-jellys--800.webp",
+          ".avif": "heady-jellys--800.avif"
+        },
+        "1600": {
+          ".jpg": "heady-jellys--1600.jpg",
+          ".webp": "heady-jellys--1600.webp",
+          ".avif": "heady-jellys--1600.avif"
+        },
+        "2400": {
+          ".jpg": "heady-jellys--2400.jpg",
+          ".webp": "heady-jellys--2400.webp",
+          ".avif": "heady-jellys--2400.avif"
+        }
+      }
+    },
+    "electric-lady": {
+      "stem": "electric-lady",
+      "source": "/workspace/organic-mechanic/scrape/images/products/electric-lady__01__electric+lady.jpg",
+      "native": [
+        2880,
+        4271
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "electric-lady--800.jpg",
+          ".webp": "electric-lady--800.webp",
+          ".avif": "electric-lady--800.avif"
+        },
+        "1600": {
+          ".jpg": "electric-lady--1600.jpg",
+          ".webp": "electric-lady--1600.webp",
+          ".avif": "electric-lady--1600.avif"
+        },
+        "2400": {
+          ".jpg": "electric-lady--2400.jpg",
+          ".webp": "electric-lady--2400.webp",
+          ".avif": "electric-lady--2400.avif"
+        }
+      }
+    },
+    "ghost-whispers": {
+      "stem": "ghost-whispers",
+      "source": "/workspace/organic-mechanic/scrape/images/products/ghostwhispers__01__11461.jpg",
+      "native": [
+        2034,
+        2846
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "ghost-whispers--800.jpg",
+          ".webp": "ghost-whispers--800.webp",
+          ".avif": "ghost-whispers--800.avif"
+        },
+        "1600": {
+          ".jpg": "ghost-whispers--1600.jpg",
+          ".webp": "ghost-whispers--1600.webp",
+          ".avif": "ghost-whispers--1600.avif"
+        },
+        "2034": {
+          ".jpg": "ghost-whispers--2034.jpg",
+          ".webp": "ghost-whispers--2034.webp",
+          ".avif": "ghost-whispers--2034.avif"
+        }
+      }
+    },
+    "tree-house": {
+      "stem": "tree-house",
+      "source": "/workspace/prints2/masters/Tree_house_300dpi.jpg",
+      "native": [
+        8007,
+        10569
+      ],
+      "variants": {
+        "800": {
+          ".jpg": "tree-house--800.jpg",
+          ".webp": "tree-house--800.webp",
+          ".avif": "tree-house--800.avif"
+        },
+        "1600": {
+          ".jpg": "tree-house--1600.jpg",
+          ".webp": "tree-house--1600.webp",
+          ".avif": "tree-house--1600.avif"
+        },
+        "2400": {
+          ".jpg": "tree-house--2400.jpg",
+          ".webp": "tree-house--2400.webp",
+          ".avif": "tree-house--2400.avif"
+        }
+      }
+    }
+  },
+  "slides": [
+    {
+      "id": "lion-and-the-hare",
+      "kind": "original",
+      "title": "The Lion and the Hare",
+      "alt": "The Lion and the Hare, original painting by William Bowers \u2014 a blue hare facing a roaring red lion",
+      "source": "/workspace/prints2/masters/Lion_vs_hare_300dpi.jpg",
+      "source_note": "Print master 300 DPI (Drive: Lion_vs_hare_300dpi.jpg), 10776\u00d74497",
+      "object_position": "center 48%",
+      "requested": true
+    },
+    {
+      "id": "pair-lion-bomber",
+      "kind": "pairing",
+      "title": "The Lion and the Hare",
+      "pairing_label": "From canvas to wearable",
+      "product_name": "Unisex Bomber Jacket",
+      "product_slug": "unisex-bomber-jacket",
+      "product_url": "https://theorganicmechanic.bigcartel.com/product/unisex-bomber-jacket",
+      "cta": "Shop the bomber jacket",
+      "art_id": "lion-and-the-hare",
+      "art_title": "The Lion and the Hare",
+      "art_alt": "The Lion and the Hare, original painting by William Bowers",
+      "art_source": "/workspace/prints2/masters/Lion_vs_hare_300dpi.jpg",
+      "art_source_note": "Print master 300 DPI, 10776\u00d74497",
+      "art_object_position": "center 48%",
+      "product_alt": "Unisex bomber jacket printed with The Lion and the Hare by William Bowers",
+      "product_source": "/workspace/organic-mechanic/scrape/images/products/unisex-bomber-jacket__02__all-over-print-unisex-bomber-jacket-white-front-6a80486d0c035.jpg",
+      "product_source_note": "Big Cartel merch mockup (front), 2000\u00d72000",
+      "product_fallback": "/workspace/organic-mechanic/scrape/images/products/unisex-bomber-jacket__02__all-over-print-unisex-bomber-jacket-white-front-6a80486d0c035.jpg"
+    },
+    {
+      "id": "the-pondering",
+      "kind": "original",
+      "title": "The Pondering",
+      "alt": "The Pondering, original acrylic painting by William Bowers \u2014 a surreal contemplative figure in blue, gold, and magenta",
+      "source": "/workspace/prints2/masters/The_pondering_astronaut_300dpi.jpg",
+      "source_note": "Print master 300 DPI (The_pondering_astronaut_300dpi.jpg), 8403\u00d79477",
+      "object_position": "center 28%",
+      "requested": true
+    },
+    {
+      "id": "pair-ponder-tee",
+      "kind": "pairing",
+      "title": "The Pondering",
+      "pairing_label": "From canvas to wearable",
+      "product_name": "\u201cPonder\u201d Youth cotton crew neck t-shirt",
+      "product_slug": "youth-cotton-crew-neck-t-shirt",
+      "product_url": "https://theorganicmechanic.bigcartel.com/product/youth-cotton-crew-neck-t-shirt",
+      "cta": "Shop the Ponder tee",
+      "art_id": "the-pondering",
+      "art_title": "The Pondering",
+      "art_alt": "The Pondering, original acrylic painting by William Bowers",
+      "art_source": "/workspace/prints2/masters/The_pondering_astronaut_300dpi.jpg",
+      "art_source_note": "Print master 300 DPI, 8403\u00d79477",
+      "art_object_position": "center 28%",
+      "product_alt": "Ponder all-over-print youth t-shirt featuring The Pondering by William Bowers",
+      "product_source": "/workspace/organic-mechanic/scrape/images/products/youth-cotton-crew-neck-t-shirt__01__all-over-print-youth-cotton-crew-neck-t-shirt-white-front-6a7d420f3ca79.jpg",
+      "product_source_note": "Big Cartel merch mockup (front), 2000\u00d72000"
+    },
+    {
+      "id": "cepla-producer",
+      "kind": "original",
+      "title": "Cepla-Producer",
+      "alt": "Cepla-Producer (Octopus on Keys), original painting by William Bowers \u2014 a cosmic octopus with headphones playing a keyboard",
+      "source": "/workspace/printful/octopus-on-keys_24x36.jpg",
+      "source_note": "Google Drive / local 24\u00d736 in 300 DPI master (octopus-on-keys_24x36in_landscape_300dpi.jpg), 10800\u00d77200",
+      "object_position": "center 42%",
+      "requested": true
+    },
+    {
+      "id": "the-light-conductor",
+      "kind": "original",
+      "title": "The Light Conductor",
+      "alt": "The Light Conductor, original painting by William Bowers \u2014 a visored figure conducting beams of light",
+      "source": "/workspace/prints2/masters/The_Light_Conductor_300dpi.jpg",
+      "source_note": "Print master 300 DPI (Drive: The_Light_Conductor_300dpi.jpg), 8004\u00d710008",
+      "object_position": "center 32%",
+      "requested": true
+    },
+    {
+      "id": "pair-conductor-bomber",
+      "kind": "pairing",
+      "title": "The Light Conductor",
+      "pairing_label": "From canvas to wearable",
+      "product_name": "Unisex Bomber Jacket",
+      "product_slug": "unisex-bomber-jacket",
+      "product_url": "https://theorganicmechanic.bigcartel.com/product/unisex-bomber-jacket",
+      "cta": "Shop the bomber jacket",
+      "pairing_note": "The Light Conductor is printed on the back of the same Lion and the Hare bomber.",
+      "art_id": "the-light-conductor",
+      "art_title": "The Light Conductor",
+      "art_alt": "The Light Conductor, original painting by William Bowers",
+      "art_source": "/workspace/prints2/masters/The_Light_Conductor_300dpi.jpg",
+      "art_source_note": "Print master 300 DPI, 8004\u00d710008",
+      "art_object_position": "center 32%",
+      "product_alt": "Back of the unisex bomber jacket printed with The Light Conductor by William Bowers",
+      "product_source": "/workspace/organic-mechanic/scrape/images/products/unisex-bomber-jacket__01__all-over-print-unisex-bomber-jacket-white-back-6a80486d0bc2d.jpg",
+      "product_source_note": "Big Cartel merch mockup (back), 2000\u00d72000"
+    },
+    {
+      "id": "sacred-samurai",
+      "kind": "original",
+      "title": "Sacred Samurai",
+      "alt": "Sacred Samurai, original painting by William Bowers \u2014 a samurai silhouette against a violet and rose field",
+      "source": "/workspace/prints2/masters/Symphony_Samurai_300dpi.jpg",
+      "source_note": "Print master 300 DPI filed as Symphony_Samurai_300dpi.jpg, 7809\u00d710341",
+      "object_position": "center 35%",
+      "requested": true
+    },
+    {
+      "id": "cosmic-owl",
+      "kind": "original",
+      "title": "Cosmic Owl",
+      "alt": "Cosmic Owl, original psychedelic mandala acrylic painting on a round canvas by William Bowers",
+      "source": "/workspace/organic-mechanic/scrape/images/products/owl-mandala__02__20260421_084339.jpg",
+      "source_note": "Big Cartel original-painting photo, 3000\u00d72854",
+      "object_position": "center 45%",
+      "shop_path": "/product/owl-mandala/"
+    },
+    {
+      "id": "heady-jellys",
+      "kind": "original",
+      "title": "Heady Jellys",
+      "alt": "Heady Jellys, original painting by William Bowers \u2014 two vivid jellyfish in a teal sea",
+      "source": "/workspace/prints2/masters/Heady_jellys_300dpi.jpg",
+      "source_note": "Print master 300 DPI, 7737\u00d710575",
+      "object_position": "center 30%"
+    },
+    {
+      "id": "electric-lady",
+      "kind": "original",
+      "title": "Electric Lady",
+      "alt": "Electric Lady, original mixed-media sculpture on fractal-burned live-edge wood by William Bowers",
+      "source": "/workspace/organic-mechanic/scrape/images/products/electric-lady__01__electric+lady.jpg",
+      "source_note": "Big Cartel original-art photo, 2880\u00d74271",
+      "object_position": "center 35%",
+      "shop_path": "/product/electric-lady/"
+    },
+    {
+      "id": "ghost-whispers",
+      "kind": "original",
+      "title": "Ghost Whispers",
+      "alt": "Ghost Whispers, original painting by William Bowers \u2014 a mechanical being with flanking spirit faces",
+      "source": "/workspace/organic-mechanic/scrape/images/products/ghostwhispers__01__11461.jpg",
+      "source_note": "Big Cartel original-painting photo, 2034\u00d72846",
+      "object_position": "center 28%",
+      "shop_path": "/product/ghostwhispers/"
+    },
+    {
+      "id": "tree-house",
+      "kind": "original",
+      "title": "Tree House",
+      "alt": "Tree House, original painting by William Bowers \u2014 a cabin perched in twisted golden roots",
+      "source": "/workspace/prints2/masters/Tree_house_300dpi.jpg",
+      "source_note": "Print master 300 DPI, 8007\u00d710569",
+      "object_position": "center 40%"
+    }
+  ],
+  "missing": [
+    {
+      "title": "Bob Crosses DMT Dream",
+      "reason": "No file, listing, or Drive match under this title (or close variants such as DMT, Bob Crosses, or Dream). Not in the Print Masters 300 DPI set, Big Cartel catalog, or local scrape."
+    },
+    {
+      "title": "Mandala Unraveled",
+      "reason": "Only the Unraveled & Restored backpack merch mockups were found (2000\u00d72000 product photos). No high-resolution photograph of the original mandala painting."
+    },
+    {
+      "title": "Mandala Restored",
+      "reason": "Same as Mandala Unraveled \u2014 the backpack describes two contrasting mandalas, but the original paintings themselves are not in the catalog or Drive under these names."
+    },
+    {
+      "title": "Cephla-Creator (if this was meant instead of Cepla-Producer)",
+      "reason": "The shop original \u201cCephla-Creator\u201d (octopus with paintbrushes) exists, but every Big Cartel photo is \u2264771px wide. Skipped as below the 1600px quality bar. The high-res \u201cOctopus on Keys\u201d painting is used for Cepla-Producer."
+    }
+  ]
+}

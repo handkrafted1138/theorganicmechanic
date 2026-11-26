@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block main %}
+<article class="pdp wrap">
+  <nav class="crumbs" aria-label="Breadcrumb">
+    <a href="/">Home</a> / <a href="/shop/">Shop</a> / <a href="{{ section.path }}">{{ section.crumb }}</a> / <span>{{ product.title }}</span>
+  </nav>
+  <div class="pdp-grid">
+    <div class="gallery" data-gallery>
+      <button class="gallery-main" type="button" data-gallery-main aria-label="View larger image">
+        {{ product.pictures[0].html | safe }}
+      </button>
+      {% if product.pictures|length > 1 %}
+      <div class="thumbs">
+        {% for pic in product.pictures %}
+        <button type="button" data-thumb data-full="{{ pic.full }}" data-webp="{{ pic.webp_srcset }}" data-avif="{{ pic.avif_srcset }}" data-alt="{{ pic.alt }}" aria-label="View image {{ loop.index }} of {{ product.pictures|length }}: {{ product.title }}"{% if loop.first %} aria-current="true"{% endif %}>
+          <img src="{{ pic.thumb }}" alt="" width="88" height="88">
+        </button>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    <div class="pdp-info">
+      <span class="eyebrow">{{ product.eyebrow }}</span>
+      <h1>{{ product.title }}</h1>
+      <div class="pdp-badges">
+  {% if product.sold_out %}
+    <span class="badge badge-sold">Sold</span>
+  {% endif %}
+  {% if product.on_sale %}
+    <span class="badge badge-sale">On sale</span>
+  {% endif %}
+  {% if product.one_of_one %}
+    <span class="badge badge-one">One of one</span>
+  {% endif %}
+</div>
+      <p class="price">{{ product.price_label }}</p>
+      <div class="prose">
+        {{ product.prose | safe }}
+      </div>
+      {% if product.options_note %}
+      <p class="options-note"><strong>Options:</strong> {{ product.options_note }} Selected at checkout.</p>
+      {% endif %}
+      {% if product.specs %}
+      <div class="specs">
+        {% for spec in product.specs %}
+        <div class="spec-row"><span class="k">{{ spec.k }}</span><span>{{ spec.v }}</span></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if product.sold_out %}
+        <div class="sold-banner">This piece has sold and is now in a private collection. Explore other originals, or inquire about a commission.</div>
+        <div class="buy-row">
+          <a class="btn btn-ghost" href="/shop/original-paintings/">View available originals</a>
+          <a class="btn btn-gold" href="/commissions/">Commission a related work</a>
+        </div>
+      {% else %}
+        <div class="buy-row">
+          <a class="btn btn-gold btn-lg" href="{{ product.buy_url }}" rel="noopener noreferrer" target="_blank">{{ product.buy_label }}</a>
+        </div>
+        <p class="buy-help">Checkout opens on Big Cartel, where you can choose options and pay securely with card or PayPal.</p>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if related %}
+  <section class="related">
+    <div class="section-head">
+      <h2>You might also love</h2>
+      <a class="link-arrow" href="{{ section.path }}">More in {{ section.crumb }} →</a>
+    </div>
+    <div class="grid">
+      {% for card in related %}
+        {{ card | safe }}
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+</article>
+<div class="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
+  <button class="lightbox-close" type="button" aria-label="Close">×</button>
+  {% if product.pictures|length > 1 %}
+  <button class="lightbox-nav prev" type="button" aria-label="Previous image">‹</button>
+  <button class="lightbox-nav next" type="button" aria-label="Next image">›</button>
+  {% endif %}
+  <img alt="">
+</div>
+{% endblock %}
