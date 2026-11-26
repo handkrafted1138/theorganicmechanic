@@ -40,14 +40,22 @@ CATEGORY_SECTION = {
 # Products whose Big Cartel category does not match the shop section.
 SECTION_OVERRIDE = {
     "flag": "home",
-    "in-the-depths-shower-curtian": "home",
     "i-bees-in-the-trap-tough-case-for-iphone": "home",
-    "higher-horizons-tapered-stainless-steel-tumbler": "home",
     "custom-shaped-pillow": "home",
+    "the-pondering-astronaut-framed-poster": "wall-art",
+    "the-lion-and-the-hare-framed-poster": "wall-art",
+    "sailings-the-side-of-the-erph-framed-poster": "wall-art",
+    "og-octopus-s2x-box-framed-poster": "wall-art",
+    "nor-graffiti-framed-poster": "wall-art",
+    "paul-wall-russ-framed-poster": "wall-art",
+    "prime-sloth-framed-poster": "wall-art",
+    "jags-framed-poster": "wall-art",
+    "the-pondering-astronaut-indoor-wall-tapestry": "wall-art",
 }
 
 SECTION_ORDER = [
     "original-paintings",
+    "wall-art",
     "jewelry",
     "resin-art",
     "apparel",
@@ -65,6 +73,16 @@ SECTIONS = {
         "meta_title": "Original Psychedelic Paintings by William Bowers",
         "meta_desc": "One-of-a-kind acrylic and mixed-media works — mandalas, visionary figures, and cosmic animal paintings. Signed originals, insured U.S. shipping.",
         "grid": "grid-2",
+    },
+    "wall-art": {
+        "path": "/shop/wall-art/",
+        "crumb": "Wall art & prints",
+        "heading": "Wall art & prints.",
+        "eyebrow": "Prints",
+        "blurb": "Framed posters and tapestries of original paintings by William Bowers, printed to order.",
+        "meta_title": "Wall Art & Prints | Framed Posters and Tapestries",
+        "meta_desc": "Framed posters and indoor wall tapestries of original paintings by William Bowers. Printed to order and shipped from the U.S.",
+        "grid": "grid",
     },
     "jewelry": {
         "path": "/shop/jewelry/",
@@ -533,7 +551,7 @@ def _encode_one(src: Path, stem: str, force: bool = False, encode: bool = True) 
 
 def srcset(stem: str, ext: str, info: dict) -> str:
     parts = []
-    for w, files in sorted(info.get("variants") or {}, key=lambda kv: int(kv[0])):
+    for w, files in sorted((info.get("variants") or {}).items(), key=lambda kv: int(kv[0])):
         name = files.get(ext)
         if name:
             parts.append(f"/assets/images/products/{name} {w}w")

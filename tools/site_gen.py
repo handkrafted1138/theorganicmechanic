@@ -150,7 +150,7 @@ def render_shop(jinja, section_slug: str | None, items, images, titles):
         filtered = list(items)
         path = SITE / "shop" / "index.html"
         url = f"{cat.SITE_ORIGIN}/shop/"
-        heading, eyebrow, blurb = "All works.", "The shop", "Originals, handmade jewelry, resin objects, apparel, bags, and home — everything in the studio, in one place."
+        heading, eyebrow, blurb = "All works.", "The shop", "Originals, prints, handmade jewelry, resin objects, apparel, bags, and home — everything in the studio, in one place."
         title = "Shop Art, Jewelry & Apparel | the Organic Mechanic"
         desc = "Shop original psychedelic paintings, handmade pressed flower resin jewelry, and wearable art by William Bowers."
         grid = "grid"
@@ -185,6 +185,86 @@ def render_shop(jinja, section_slug: str | None, items, images, titles):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(html, encoding="utf-8")
     return path
+
+
+
+def write_removed_redirect(slug: str) -> Path:
+    """Keep old product URLs from 404ing after a Big Cartel deletion."""
+    dest = SITE / "product" / slug / "index.html"
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    dest.write_text(
+        f"""<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>This piece has left the shop | the Organic Mechanic</title>
+  <meta http-equiv="refresh" content="0;url=/shop/">
+  <link rel="canonical" href="{cat.SITE_ORIGIN}/shop/">
+  <meta name="robots" content="noindex, follow">
+</head>
+<body>
+  <p>This piece is no longer in the shop. <a href="/shop/">Browse the shop</a>.</p>
+</body>
+</html>
+""",
+        encoding="utf-8",
+    )
+    return dest
+
+
+
+RELATED_SECTION_RE = re.compile(r"  <section class=\"related\">.*?</section>", re.S)
+
+
+def related_section_html(item, titles, all_items, all_images):
+    slug = item["permalink"]
+    section_slug = cat.primary_section(item)
+    section = cat.SECTIONS[section_slug]
+    related_items = [
+        p for p in all_items
+        if p["permalink"] != slug and cat.in_section(p, section_slug)
+    ][:3]
+    cards = [
+        cat.card_html(p, all_images.get(p["permalink"], []), titles, "(max-width: 700px) 50vw, 30vw", section_slug)
+        for p in related_items
+    ]
+    if not cards:
+        return ""
+    inner = "\n      ".join(cards)
+    return (
+        '  <section class="related">\n'
+        '    <div class="section-head">\n'
+        '      <h2>You might also love</h2>\n'
+        f'      <a class="link-arrow" href="{section["path"]}">More in {section["crumb"]} →</a>\n'
+        '    </div>\n'
+        '    <div class="grid">\n'
+        f'      {inner}\n'
+        '    </div>\n'
+        '  </section>'
+    )
+
+
+def refresh_related_on_existing(skipped, items, titles, images):
+    """Update 'You might also love' on kept product pages without touching editorial copy."""
+    by_slug = {p["permalink"]: p for p in items}
+    refreshed = []
+    for slug in skipped:
+        dest = SITE / "product" / slug / "index.html"
+        if not dest.exists() or slug not in by_slug:
+            continue
+        html = dest.read_text(encoding="utf-8")
+        new_rel = related_section_html(by_slug[slug], titles, items, images)
+        orig = html
+        if RELATED_SECTION_RE.search(html):
+            html = RELATED_SECTION_RE.sub(new_rel, html, count=1)
+        elif new_rel:
+            html = html.replace("</article>", new_rel + "\n</article>", 1)
+        if html != orig:
+            dest.write_text(html, encoding="utf-8")
+            refreshed.append(slug)
+            print(f"  related {slug}")
+    return refreshed
 
 
 def write_sitemap(items):
@@ -280,10 +360,21 @@ def generate_catalog(
             print(f"  shop {slug}")
         written.append(write_sitemap(items))
         print("  sitemap")
+        for slug in refresh_related_on_existing(skipped, items, titles, images):
+            written.append(SITE / "product" / slug / "index.html")
+    removed = []
+    product_root = SITE / "product"
+    if product_root.exists():
+        for folder in sorted(product_root.iterdir()):
+            if folder.is_dir() and folder.name not in live_slugs and (folder / "index.html").exists():
+                written.append(write_removed_redirect(folder.name))
+                removed.append(folder.name)
+                print(f"  redirect removed {folder.name}")
     return {
         "products": len(items),
         "written": [str(p) for p in written],
         "skipped_existing": skipped,
         "listings_refreshed": refresh_listings,
+        "removed_redirects": removed,
         "slugs": sorted(live_slugs),
     }
