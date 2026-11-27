@@ -840,3 +840,115 @@ textarea { min-height: 8rem; resize: vertical; }
 @media (max-width: 800px) {
   .archive-item { grid-template-columns: 1fr; gap: 1.2rem; }
 }
+
+/* Share button — listing cards and product pages */
+.card-link {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  color: inherit;
+  min-width: 0;
+}
+.card-link:hover { color: inherit; }
+.card .card-price { padding-right: 2.7rem; }
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  margin: 0;
+  cursor: pointer;
+  font: inherit;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--ivory);
+  background: rgba(10, 10, 10, 0.72);
+  border: 1px solid var(--line-strong);
+  transition: border-color 0.3s, color 0.3s, background 0.3s, transform 0.3s;
+}
+.share-btn .share-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+.share-btn:hover,
+.share-btn:focus-visible {
+  color: var(--gold-bright);
+  border-color: rgba(196, 164, 106, 0.55);
+  background: rgba(10, 10, 10, 0.9);
+}
+.share-btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+.share-btn--card {
+  position: absolute;
+  right: 0.7rem;
+  bottom: 0.75rem;
+  z-index: 3;
+  width: 2.35rem;
+  height: 2.35rem;
+  padding: 0;
+  border-radius: 999px;
+}
+.share-btn--pdp {
+  /* buys the ghost-button look; keep icon + label aligned */
+  background: transparent;
+}
+@media (max-width: 700px) {
+  .share-btn--card {
+    width: 2.6rem;
+    height: 2.6rem;
+  }
+}
+
+.share-menu {
+  position: fixed;
+  z-index: 80;
+  min-width: 11.5rem;
+  padding: 0.4rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 164, 106, 0.4);
+  border-radius: 0.85rem;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(136, 234, 226, 0.08);
+}
+.share-menu[hidden] { display: none; }
+.share-copied {
+  margin: 0 0.35rem 0.35rem;
+  padding: 0.45rem 0.5rem 0.3rem;
+  color: var(--gold-bright);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+.share-copied[hidden] { display: none; }
+.share-menu button,
+.share-menu a {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0.55rem 0.75rem;
+  border: 0;
+  border-radius: 0.55rem;
+  background: transparent;
+  color: var(--ivory) !important;
+  font: inherit;
+  font-size: 0.88rem;
+  letter-spacing: 0.04em;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: none;
+}
+.share-menu button:hover,
+.share-menu a:hover,
+.share-menu button:focus-visible,
+.share-menu a:focus-visible {
+  background: var(--gold-dim);
+  color: var(--ivory) !important;
+  outline: none;
+}

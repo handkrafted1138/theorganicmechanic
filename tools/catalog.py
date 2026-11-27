@@ -633,6 +633,47 @@ def picture_html(stem: str, info: dict, alt: str, sizes: str, eager: bool = Fals
     return "<picture>\n" + "\n".join(sources) + "\n  " + img + "\n</picture>"
 
 
+
+SHARE_ICON = (
+    '<svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">'
+    '<path d="M12 3.5 7.8 7.7a1 1 0 0 0 1.4 1.4L11 7.3V15a1 1 0 1 0 2 0V7.3l1.8 1.8a1 1 0 1 0 1.4-1.4L12 3.5z"/>'
+    '<path d="M6 13.5a1 1 0 0 0-1 1V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3.5a1 1 0 1 0-2 0V18H7v-3.5a1 1 0 0 0-1-1z"/>'
+    "</svg>"
+)
+
+
+def share_image_url(images: list[dict]) -> str:
+    if not images:
+        return ""
+    rel = largest_webp(images[0]["stem"], images[0]) or thumb_url(images[0]["stem"], images[0])
+    if not rel:
+        return ""
+    return rel if rel.startswith("http") else f"{SITE_ORIGIN}{rel}"
+
+
+def share_page_url(slug: str) -> str:
+    return f"{SITE_ORIGIN}/product/{slug}/"
+
+
+def share_button_html(title: str, url: str, image: str = "", *, variant: str = "card") -> str:
+    """Accessible Share control. variant is 'card' (icon) or 'pdp' (labeled, next to buy)."""
+    label = f"Share {title}"
+    img_attr = f' data-share-image="{html.escape(image, quote=True)}"' if image else ""
+    if variant == "pdp":
+        classes = "btn btn-ghost share-btn share-btn--pdp"
+        visible = '<span class="share-label">Share</span>'
+    else:
+        classes = "share-btn share-btn--card"
+        visible = ""
+    return (
+        f'<button type="button" class="{classes}" data-share '
+        f'data-share-url="{html.escape(url, quote=True)}" '
+        f'data-share-title="{html.escape(title, quote=True)}"{img_attr} '
+        f'aria-label="{html.escape(label, quote=True)}" aria-haspopup="menu" aria-expanded="false">'
+        f"{SHARE_ICON}{visible}</button>"
+    )
+
+
 def card_html(item: dict, images: list[dict], titles: dict, sizes: str, section_slug: str) -> str:
     slug = item["permalink"]
     title = display_title(slug, item.get("name") or "", titles)
@@ -650,8 +691,10 @@ def card_html(item: dict, images: list[dict], titles: dict, sizes: str, section_
     if images:
         alt = f"{title} — {section['crumb']} by William Bowers"
         pic = picture_html(images[0]["stem"], images[0], alt, sizes, eager=False, prefer=1200)
+    share = share_button_html(title, share_page_url(slug), share_image_url(images), variant="card")
     return (
-        f'<a class="card" href="/product/{slug}/">\n'
+        f'<article class="card">\n'
+        f'<a class="card-link" href="/product/{slug}/">\n'
         f'  <div class="card-media">\n'
         f'    <div class="badges">\n'
         f'  \n'
@@ -670,5 +713,7 @@ def card_html(item: dict, images: list[dict], titles: dict, sizes: str, section_
         f'    <h3 class="card-title">{html.escape(title)}</h3>\n'
         f'    <div class="card-price">{price_label(item)}</div>\n'
         f'  </div>\n'
-        f'</a>'
+        f'</a>\n'
+        f'{share}\n'
+        f'</article>'
     )

@@ -52,10 +52,30 @@
         <div class="buy-row">
           <a class="btn btn-ghost" href="/shop/original-paintings/">View available originals</a>
           <a class="btn btn-gold" href="/commissions/">Commission a related work</a>
+        <button type="button" class="btn btn-ghost share-btn share-btn--pdp" data-share
+          data-share-url="{{ canonical }}"
+          data-share-title="{{ product.title }}"
+          data-share-image="{{ og_image }}"
+          aria-label="Share {{ product.title }}"
+          aria-haspopup="menu"
+          aria-expanded="false">
+          <svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5 7.8 7.7a1 1 0 0 0 1.4 1.4L11 7.3V15a1 1 0 1 0 2 0V7.3l1.8 1.8a1 1 0 1 0 1.4-1.4L12 3.5z"/><path d="M6 13.5a1 1 0 0 0-1 1V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3.5a1 1 0 1 0-2 0V18H7v-3.5a1 1 0 0 0-1-1z"/></svg>
+          <span class="share-label">Share</span>
+        </button>
         </div>
       {% else %}
         <div class="buy-row">
           <a class="btn btn-gold btn-lg" href="{{ product.buy_url }}" rel="noopener noreferrer" target="_blank">{{ product.buy_label }}</a>
+        <button type="button" class="btn btn-ghost share-btn share-btn--pdp" data-share
+          data-share-url="{{ canonical }}"
+          data-share-title="{{ product.title }}"
+          data-share-image="{{ og_image }}"
+          aria-label="Share {{ product.title }}"
+          aria-haspopup="menu"
+          aria-expanded="false">
+          <svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5 7.8 7.7a1 1 0 0 0 1.4 1.4L11 7.3V15a1 1 0 1 0 2 0V7.3l1.8 1.8a1 1 0 1 0 1.4-1.4L12 3.5z"/><path d="M6 13.5a1 1 0 0 0-1 1V18a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-3.5a1 1 0 1 0-2 0V18H7v-3.5a1 1 0 0 0-1-1z"/></svg>
+          <span class="share-label">Share</span>
+        </button>
         </div>
         <p class="buy-help">Checkout opens on Big Cartel, where you can choose options and pay securely with card or PayPal.</p>
       {% endif %}

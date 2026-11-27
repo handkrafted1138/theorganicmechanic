@@ -164,4 +164,160 @@
       window.location.href = `mailto:theorganicmechanicshop@gmail.com?subject=${subject}&body=${body}`;
     });
   }
+
+
+  /* Share: Web Share API on supporting devices; clipboard + menu otherwise */
+  const shareMenu = document.createElement("div");
+  shareMenu.className = "share-menu";
+  shareMenu.hidden = true;
+  shareMenu.setAttribute("role", "menu");
+  shareMenu.setAttribute("aria-label", "Share this piece");
+  shareMenu.innerHTML = `
+    <p class="share-copied" hidden>Link copied</p>
+    <button type="button" role="menuitem" data-share-copy>Copy link</button>
+    <a role="menuitem" data-share-net="facebook" target="_blank" rel="noopener noreferrer">Facebook</a>
+    <a role="menuitem" data-share-net="pinterest" target="_blank" rel="noopener noreferrer">Pinterest</a>
+    <a role="menuitem" data-share-net="x" target="_blank" rel="noopener noreferrer">X</a>
+    <a role="menuitem" data-share-net="email">Email</a>
+  `;
+  document.body.appendChild(shareMenu);
+  const copiedNote = shareMenu.querySelector(".share-copied");
+  let shareTrigger = null;
+  let copiedTimer = 0;
+  let shareScrollY = 0;
+  let shareOpenedAt = 0;
+
+  const closeShareMenu = () => {
+    shareMenu.hidden = true;
+    if (shareTrigger) shareTrigger.setAttribute("aria-expanded", "false");
+    shareTrigger = null;
+  };
+
+  const positionMenu = (btn) => {
+    const rect = btn.getBoundingClientRect();
+    const menuW = 184;
+    const vw = document.documentElement.clientWidth;
+    const vh = window.innerHeight;
+    const left = Math.min(Math.max(8, rect.right - menuW), vw - menuW - 8);
+    shareMenu.style.left = `${left}px`;
+    shareMenu.style.top = `${rect.bottom + 8}px`;
+    shareMenu.hidden = false;
+    const mh = shareMenu.getBoundingClientRect().height;
+    if (rect.bottom + mh + 16 > vh && rect.top > mh + 16) {
+      shareMenu.style.top = `${rect.top - mh - 8}px`;
+    }
+  };
+
+  const copyLink = async (url) => {
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(url);
+        return true;
+      }
+    } catch (_) { /* fall through */ }
+    const ta = document.createElement("textarea");
+    ta.value = url;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.select();
+    let ok = false;
+    try { ok = document.execCommand("copy"); } catch (_) { ok = false; }
+    ta.remove();
+    return ok;
+  };
+
+  const showCopied = () => {
+    copiedNote.hidden = false;
+    clearTimeout(copiedTimer);
+    copiedTimer = window.setTimeout(() => { copiedNote.hidden = true; }, 2200);
+  };
+
+  const openShareMenu = async (btn, { url, title, image, copied }) => {
+    shareTrigger = btn;
+    btn.setAttribute("aria-expanded", "true");
+    const encodedUrl = encodeURIComponent(url);
+    const encodedTitle = encodeURIComponent(title);
+    const encodedImg = encodeURIComponent(image || "");
+    shareMenu.querySelector('[data-share-net="facebook"]').href =
+      `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+    const pin = `https://www.pinterest.com/pin/create/button/?url=${encodedUrl}&description=${encodedTitle}` +
+      (image ? `&media=${encodedImg}` : "");
+    shareMenu.querySelector('[data-share-net="pinterest"]').href = pin;
+    shareMenu.querySelector('[data-share-net="x"]').href =
+      `https://twitter.com/intent/tweet?url=${encodedUrl}&text=${encodedTitle}`;
+    shareMenu.querySelector('[data-share-net="email"]').href =
+      `mailto:?subject=${encodedTitle}&body=${encodedTitle}%0A%0A${encodedUrl}`;
+    copiedNote.hidden = !copied;
+    shareScrollY = window.scrollY;
+    shareOpenedAt = Date.now();
+    positionMenu(btn);
+    if (copied) showCopied();
+    shareMenu.querySelector("[data-share-copy]")?.focus();
+    shareScrollY = window.scrollY;
+  };
+
+  const payloadFrom = (btn) => ({
+    url: btn.getAttribute("data-share-url") || "",
+    title: btn.getAttribute("data-share-title") || document.title,
+    image: btn.getAttribute("data-share-image") || "",
+  });
+
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest("[data-share]");
+    if (btn) {
+      e.preventDefault();
+      e.stopPropagation();
+      const data = payloadFrom(btn);
+      if (!data.url) return;
+      if (shareTrigger === btn && !shareMenu.hidden) {
+        closeShareMenu();
+        return;
+      }
+      if (typeof navigator.share === "function") {
+        try {
+          await navigator.share({ title: data.title, text: data.title, url: data.url });
+          closeShareMenu();
+          return;
+        } catch (err) {
+          if (err && err.name === "AbortError") return;
+        }
+      }
+      const copied = await copyLink(data.url);
+      openShareMenu(btn, { ...data, copied });
+      return;
+    }
+    if (!shareMenu.hidden && !shareMenu.contains(e.target) && Date.now() - shareOpenedAt > 200) closeShareMenu();
+  });
+
+  shareMenu.querySelector("[data-share-copy]").addEventListener("click", async (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (!shareTrigger) return;
+    const { url } = payloadFrom(shareTrigger);
+    if (await copyLink(url)) showCopied();
+  });
+
+  shareMenu.querySelectorAll("[data-share-net]").forEach((a) => {
+    a.addEventListener("click", () => {
+      // Let the navigation happen, then close.
+      setTimeout(closeShareMenu, 0);
+    });
+  });
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !shareMenu.hidden) {
+      const trigger = shareTrigger;
+      closeShareMenu();
+      trigger?.focus();
+    }
+  });
+  window.addEventListener("scroll", () => {
+    if (shareMenu.hidden) return;
+    if (Date.now() - shareOpenedAt < 200) return;
+    if (Math.abs(window.scrollY - shareScrollY) < 12) return;
+    closeShareMenu();
+  }, { passive: true });
+  window.addEventListener("resize", () => { if (!shareMenu.hidden) closeShareMenu(); });
 })();

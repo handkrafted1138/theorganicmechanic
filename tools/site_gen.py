@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import html as html_lib
 import json
 import re
 from datetime import date
@@ -268,6 +269,86 @@ def refresh_related_on_existing(skipped, items, titles, images):
     return refreshed
 
 
+
+def inject_share_on_product_pages(live_slugs: set[str]) -> list[str]:
+    """Add a Share control next to the buy row on existing product pages."""
+    updated = []
+    for slug in sorted(live_slugs):
+        dest = SITE / "product" / slug / "index.html"
+        if not dest.exists():
+            continue
+        page = dest.read_text(encoding="utf-8")
+        if 'class="buy-row"' not in page:
+            continue
+        buy = re.search(r'<div class="buy-row">([\s\S]*?)</div>', page)
+        if buy and "data-share" in buy.group(1):
+            continue
+        title_m = re.search(r"<h1>([^<]+)</h1>", page)
+        title = html_lib.unescape(title_m.group(1)).strip() if title_m else slug
+        og_m = re.search(r'<meta property="og:image" content="([^"]+)"', page)
+        image = og_m.group(1) if og_m else ""
+        btn = cat.share_button_html(title, cat.share_page_url(slug), image, variant="pdp")
+        new, n = re.subn(
+            r'(<div class="buy-row">[\s\S]*?)(\n\s*</div>)',
+            lambda m: m.group(1) + "\n          " + btn + m.group(2),
+            page,
+            count=1,
+        )
+        if n and new != page:
+            dest.write_text(new, encoding="utf-8")
+            updated.append(slug)
+            print(f"  share {slug}")
+    return updated
+
+
+def upgrade_legacy_product_cards(html: str) -> tuple[str, int]:
+    """Turn <a class=\"card\"> into an article with a sibling Share button."""
+    pattern = re.compile(
+        r'<a class="card" href="(/product/([^"/]+)/)">\s*(.*?)\s*</a>',
+        re.S,
+    )
+
+    def repl(m: re.Match) -> str:
+        href, slug, body = m.group(1), m.group(2), m.group(3)
+        tm = re.search(r'<h3 class="card-title">([^<]+)</h3>', body)
+        title = html_lib.unescape(tm.group(1)).strip() if tm else slug
+        im = re.search(r'<img src="([^"]+)"', body)
+        image = ""
+        if im:
+            src = im.group(1)
+            image = src if src.startswith("http") else f"{cat.SITE_ORIGIN}{src}"
+        share = cat.share_button_html(title, cat.share_page_url(slug), image, variant="card")
+        return (
+            f'<article class="card">\n'
+            f'<a class="card-link" href="{href}">\n'
+            f"{body}\n"
+            f"</a>\n"
+            f"{share}\n"
+            f"</article>"
+        )
+
+    return pattern.subn(repl, html)
+
+
+def upgrade_static_product_cards() -> list[str]:
+    """Keep share buttons on homepage / other static listing cards the daily sync leaves in place."""
+    updated = []
+    skip_top = {"product", "archive", "tools", "assets"}
+    for path in sorted(SITE.rglob("*.html")):
+        rel = path.relative_to(SITE)
+        if rel.parts and rel.parts[0] in skip_top:
+            continue
+        page = path.read_text(encoding="utf-8")
+        if '<a class="card" href="/product/' not in page:
+            continue
+        new, n = upgrade_legacy_product_cards(page)
+        if n:
+            path.write_text(new, encoding="utf-8")
+            updated.append(str(rel))
+            print(f"  share cards {rel} ({n})")
+    return updated
+
+
 def write_sitemap(items):
     urls = [
         ("/", "1.0"),
@@ -371,6 +452,10 @@ def generate_catalog(
         print(f"  redirect {dest.parent.name}")
     for slug in refresh_related_on_existing(skipped, items, titles, images):
         written.append(SITE / "product" / slug / "index.html")
+    for slug in inject_share_on_product_pages(live_slugs):
+        written.append(SITE / "product" / slug / "index.html")
+    for rel in upgrade_static_product_cards():
+        written.append(SITE / rel)
     removed = []
     product_root = SITE / "product"
     if product_root.exists():
