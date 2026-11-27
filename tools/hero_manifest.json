@@ -8,10 +8,10 @@
   "images": {
     "lion-and-the-hare": {
       "stem": "lion-and-the-hare",
-      "source": "/workspace/prints2/masters/Lion_vs_hare_300dpi.jpg",
+      "source": "/workspace/prints2/masters/lion--the-hair300.jpg",
       "native": [
-        10776,
-        4497
+        6400,
+        4267
       ],
       "variants": {
         "800": {
@@ -338,9 +338,9 @@
       "kind": "original",
       "title": "The Lion and the Hare",
       "alt": "The Lion and the Hare, original painting by William Bowers \u2014 a blue hare facing a roaring red lion",
-      "source": "/workspace/prints2/masters/Lion_vs_hare_300dpi.jpg",
-      "source_note": "Print master 300 DPI (Drive: Lion_vs_hare_300dpi.jpg), 10776\u00d74497",
-      "object_position": "center 48%",
+      "source": "/workspace/prints2/masters/lion--the-hair300.jpg",
+      "source_note": "Print master 300 DPI (Drive: lion--the-hair300.jpg, uploaded 2026-11-24), 6400\u00d74267",
+      "object_position": "center",
       "requested": true
     },
     {
@@ -355,9 +355,9 @@
       "art_id": "lion-and-the-hare",
       "art_title": "The Lion and the Hare",
       "art_alt": "The Lion and the Hare, original painting by William Bowers",
-      "art_source": "/workspace/prints2/masters/Lion_vs_hare_300dpi.jpg",
-      "art_source_note": "Print master 300 DPI, 10776\u00d74497",
-      "art_object_position": "center 48%",
+      "art_source": "/workspace/prints2/masters/lion--the-hair300.jpg",
+      "art_source_note": "Print master 300 DPI (Drive: lion--the-hair300.jpg, uploaded 2026-11-24), 6400\u00d74267",
+      "art_object_position": "center",
       "product_alt": "Unisex bomber jacket printed with The Lion and the Hare by William Bowers",
       "product_source": "/workspace/organic-mechanic/scrape/images/products/unisex-bomber-jacket__02__all-over-print-unisex-bomber-jacket-white-front-6a80486d0c035.jpg",
       "product_source_note": "Big Cartel merch mockup (front), 2000\u00d72000",
